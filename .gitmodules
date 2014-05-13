@@ -1,0 +1,3 @@
+[submodule "vendor/trash-cli"]
+	path = vendor/trash-cli
+	url = git://github.com/andreafrancia/trash-cli
