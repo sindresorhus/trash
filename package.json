@@ -42,6 +42,7 @@
     "script"
   ],
   "dependencies": {
+    "escape-string-applescript": "^0.1.0",
     "minimist": "^0.1.0",
     "update-notifier": "^0.1.8"
   },

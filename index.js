@@ -1,12 +1,13 @@
 'use strict';
 var path = require('path');
 var execFile = require('child_process').execFile;
+var escapeStringApplescript = require('escape-string-applescript');
 
 function osx(paths, cb) {
 	var script = '' +
 		'set deleteList to {}\n' +
 		'repeat with currentPath in ' + '{' + paths.map(function (el) {
-			return '"' + el + '"';
+			return '"' + escapeStringApplescript(el) + '"';
 		}).join(',') + '}' + '\n' +
 		'set end of deleteList to POSIX file currentPath\n' +
 		'end repeat\n' +

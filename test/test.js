@@ -9,13 +9,20 @@ process.chdir(__dirname);
 it('should trash files', function (cb) {
 	fs.writeFileSync('fixture', '');
 	fs.writeFileSync('fixture2', '');
+	fs.writeFileSync('weird\\\\name\\"\'', '');
 	assert(fs.existsSync('fixture'));
 	assert(fs.existsSync('fixture2'));
+	assert(fs.existsSync('weird\\\\name\\"\''));
 
-	trash(['fixture', 'fixture2'], function (err) {
+	trash([
+		'fixture',
+		'fixture2',
+		'weird\\\\name\\"\''
+	], function (err) {
 		assert(!err, err);
 		assert(!fs.existsSync('fixture'));
 		assert(!fs.existsSync('fixture2'));
+		assert(!fs.existsSync('weird\\\\name\\"\''));
 		cb();
 	});
 });
