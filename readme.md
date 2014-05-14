@@ -6,6 +6,8 @@
 
 Works on OS X, Linux and Windows.
 
+In contrast to `rm` which is [dangerous](http://docstore.mik.ua/orelly/unix3/upt/ch14_03.htm) and permanently delete files, this only moves them to the trash, which is much safer.
+
 
 ## CLI
 
