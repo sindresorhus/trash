@@ -12,13 +12,15 @@ var notifier = updateNotifier({
 });
 
 function help() {
-	console.log(pkg.description);
-	console.log('');
-	console.log('Usage');
-	console.log('  $ trash <path> [<path> ...]');
-	console.log('');
-	console.log('Example');
-	console.log('  $ trash unicorn.png rainbow.png');
+	console.log([
+		pkg.description,
+		'',
+		'Usage',
+		'  $ trash <path> [<path> ...]',
+		'',
+		'Example',
+		'  $ trash unicorn.png rainbow.png'
+	].join('\n'));
 }
 
 if (notifier.update) {
