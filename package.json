@@ -1,7 +1,7 @@
 {
   "name": "trash",
   "version": "0.1.0",
-  "description": "Cross-platform command-line app to move files and directories to the trash - A safer alternative to `rm`",
+  "description": "Cross-platform command-line app for moving files and directories to the trash - A safer alternative to `rm`",
   "license": "MIT",
   "bin": {
     "trash": "cli.js"
