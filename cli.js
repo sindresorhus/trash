@@ -39,6 +39,7 @@ if (input.length === 0 || argv.help) {
 
 trash(input, function (err) {
 	if (err) {
-		throw err;
+		console.error(err.message);
+		process.exit(1);
 	}
 });
