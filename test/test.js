@@ -2,7 +2,7 @@
 var fs = require('fs');
 var path = require('path');
 var assert = require('assert');
-var trash = require('../index');
+var trash = require('../');
 
 process.chdir(__dirname);
 

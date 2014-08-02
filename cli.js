@@ -3,7 +3,7 @@
 var updateNotifier = require('update-notifier');
 var argv = require('minimist')(process.argv.slice(2));
 var pkg = require('./package.json');
-var trash = require('./index');
+var trash = require('./');
 var input = argv._;
 
 var notifier = updateNotifier({

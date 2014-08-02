@@ -20,7 +20,7 @@ function osx(paths, cb) {
 
 		cb(err);
 	});
-};
+}
 
 function linux(paths, cb) {
 	execFile('./trash-put', paths, {
@@ -32,7 +32,7 @@ function linux(paths, cb) {
 
 		cb(err);
 	});
-};
+}
 
 function win(paths, cb) {
 	execFile('./Recycle.exe', ['-f'].concat(paths), {
@@ -40,7 +40,7 @@ function win(paths, cb) {
 	}, function (err) {
 		cb(err);
 	});
-};
+}
 
 module.exports = function (paths, cb) {
 	if (!Array.isArray(paths)) {
@@ -48,7 +48,10 @@ module.exports = function (paths, cb) {
 	}
 
 	cb = cb || function () {};
-	paths = paths.map(function (el) { return path.resolve(el) });
+
+	paths = paths.map(function (el) {
+		return path.resolve(el);
+	});
 
 	if (process.platform === 'darwin') {
 		osx(paths, cb);
