@@ -1,6 +1,6 @@
 {
   "name": "trash",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Cross-platform command-line app for moving files and directories to the trash - A safer alternative to `rm`",
   "license": "MIT",
   "bin": {
