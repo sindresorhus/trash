@@ -42,9 +42,9 @@
     "script"
   ],
   "dependencies": {
-    "escape-string-applescript": "^0.1.0",
-    "minimist": "^0.1.0",
-    "update-notifier": "^0.1.8"
+    "escape-string-applescript": "^0.1.1",
+    "minimist": "^0.2.0",
+    "update-notifier": "^0.2.0"
   },
   "devDependencies": {
     "mocha": "*"

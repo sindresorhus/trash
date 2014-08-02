@@ -6,11 +6,6 @@ var pkg = require('./package.json');
 var trash = require('./');
 var input = argv._;
 
-var notifier = updateNotifier({
-	packageName: pkg.name,
-	packageVersion: pkg.version
-});
-
 function help() {
 	console.log([
 		pkg.description,
@@ -23,9 +18,10 @@ function help() {
 	].join('\n'));
 }
 
-if (notifier.update) {
-	notifier.notify(true);
-}
+updateNotifier({
+	packageName: pkg.name,
+	packageVersion: pkg.version
+}).notify();
 
 if (argv.version) {
 	console.log(pkg.version);
