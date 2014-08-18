@@ -42,8 +42,9 @@
     "script"
   ],
   "dependencies": {
-    "escape-string-applescript": "^0.1.1",
-    "minimist": "^0.2.0",
+    "escape-string-applescript": "^1.0.0",
+    "minimist": "^1.1.0",
+    "run-applescript": "^1.0.0",
     "update-notifier": "^0.2.0"
   },
   "devDependencies": {

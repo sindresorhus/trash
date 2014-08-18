@@ -2,6 +2,7 @@
 var path = require('path');
 var execFile = require('child_process').execFile;
 var escapeStringApplescript = require('escape-string-applescript');
+var runApplescript = require('run-applescript');
 
 function osx(paths, cb) {
 	var script = '' +
@@ -13,9 +14,10 @@ function osx(paths, cb) {
 		'end repeat\n' +
 		'tell app "Finder" to delete deleteList';
 
-	execFile('osascript', ['-e', script], function (err) {
+	runApplescript(script, function (err) {
 		if (err && /10010/.test(err.message)) {
-			return cb(new Error('Item doesn\'t exist'));
+			cb(new Error('Item doesn\'t exist'));
+			return;
 		}
 
 		cb(err);
@@ -27,7 +29,8 @@ function linux(paths, cb) {
 		cwd: path.join(__dirname, 'vendor')
 	}, function (err) {
 		if (err && /cannot trash non existent/.test(err.message)) {
-			return cb(new Error('Item doesn\'t exist'));
+			cb(new Error('Item doesn\'t exist'));
+			return;
 		}
 
 		cb(err);
