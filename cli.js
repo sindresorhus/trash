@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 var updateNotifier = require('update-notifier');
-var argv = require('minimist')(process.argv.slice(2));
+var argv = require('minimist')(process.argv.slice(2), {string: ['_']});
 var pkg = require('./package.json');
 var trash = require('./');
 var input = argv._;
