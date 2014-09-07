@@ -10,36 +10,54 @@ it('should trash files', function (cb) {
 	fs.writeFileSync('fixture', '');
 	fs.writeFileSync('fixture2', '');
 	fs.writeFileSync('weird\\\\name\\"\'', '');
+	fs.writeFileSync('123');
 	assert(fs.existsSync('fixture'));
 	assert(fs.existsSync('fixture2'));
 	assert(fs.existsSync('weird\\\\name\\"\''));
-
+	assert(fs.existsSync('123'));
+	
 	trash([
 		'fixture',
 		'fixture2',
-		'weird\\\\name\\"\''
+		'weird\\\\name\\"\'',
+		123
 	], function (err) {
 		assert(!err, err);
 		assert(!fs.existsSync('fixture'));
 		assert(!fs.existsSync('fixture2'));
 		assert(!fs.existsSync('weird\\\\name\\"\''));
+		assert(!fs.existsSync('123'));
 		cb();
 	});
 });
 
 it('should trash a dir', function (cb) {
-	var f1 = path.join('fdir', 'fixture');
-	var f2 = path.join('fdir', 'fixture2');
+	
+	var d1f1 = path.join('fdir', 'fixture');
+	var d1f2 = path.join('fdir', 'fixture2');
+	var d2f1 = path.join('321', 'fixture');
+	var d2f2 = path.join('321', 'fixture2');
 
 	fs.mkdirSync('fdir');
-	fs.writeFileSync(f1, '');
-	fs.writeFileSync(f2, '');
-	assert(fs.existsSync(f1));
-	assert(fs.existsSync(f2));
+	fs.writeFileSync(d1f1, '');
+	fs.writeFileSync(d1f2, '');
+	assert(fs.existsSync(d1f1));
+	assert(fs.existsSync(d1f2));
+	
+	fs.mkdirSync('321');
+	fs.writeFileSync(d2f1, '');
+	fs.writeFileSync(d2f2, '');
+	assert(fs.existsSync(d2f1));
+	assert(fs.existsSync(d2f2));
 
-	trash(['fdir'], function (err) {
+	trash([
+		'fdir',
+		321
+	], function (err) {
 		assert(!err, err);
 		assert(!fs.existsSync('fdir'));
+		assert(!fs.existsSync(321));
 		cb();
 	});
+
 });
