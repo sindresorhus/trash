@@ -53,7 +53,7 @@ module.exports = function (paths, cb) {
 	cb = cb || function () {};
 
 	paths = paths.map(function (el) {
-		return path.resolve(el);
+		return path.resolve(String(el));
 	});
 
 	if (process.platform === 'darwin') {
