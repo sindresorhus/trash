@@ -3,14 +3,14 @@
   "version": "1.1.2",
   "description": "Cross-platform command-line app for moving files and directories to the trash - A safer alternative to `rm`",
   "license": "MIT",
-  "bin": {
-    "trash": "cli.js"
-  },
   "repository": "sindresorhus/trash",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "http://sindresorhus.com"
+  },
+  "bin": {
+    "trash": "cli.js"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -26,6 +26,7 @@
     "vendor/trash-put"
   ],
   "keywords": [
+    "cli-app",
     "cli",
     "bin",
     "trash",
@@ -45,7 +46,7 @@
     "escape-string-applescript": "^1.0.0",
     "minimist": "^1.1.0",
     "run-applescript": "^1.0.0",
-    "update-notifier": "^0.2.0"
+    "update-notifier": "^0.2.1"
   },
   "devDependencies": {
     "mocha": "*"

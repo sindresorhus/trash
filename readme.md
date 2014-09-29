@@ -18,11 +18,11 @@ $ npm install --global trash
 ```sh
 $ trash --help
 
-Usage
-  $ trash <path> [<path> ...]
+  Usage
+    trash <path> [<path> ...]
 
-Example
-  $ trash unicorn.png rainbow.png
+  Example
+    trash unicorn.png rainbow.png
 ```
 
 *Globbing support is left up to your shell, but `$ trash *.png` should expand to the above in most shells.*
@@ -38,10 +38,6 @@ $ npm install --save trash
 var trash = require('trash');
 
 trash(['unicorn.png', 'rainbow.png'], function (err) {
-	if (err) {
-		throw err;
-	}
-
 	console.log('done');
 });
 ```

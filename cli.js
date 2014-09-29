@@ -8,13 +8,14 @@ var input = argv._;
 
 function help() {
 	console.log([
-		pkg.description,
 		'',
-		'Usage',
-		'  $ trash <path> [<path> ...]',
+		'  ' + pkg.description,
 		'',
-		'Example',
-		'  $ trash unicorn.png rainbow.png'
+		'  Usage',
+		'    trash <path> [<path> ...]',
+		'',
+		'  Example',
+		'    trash unicorn.png rainbow.png'
 	].join('\n'));
 }
 
