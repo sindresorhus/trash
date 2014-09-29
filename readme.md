@@ -64,6 +64,11 @@ Add `alias t=trash` to your `.zshrc`/`.bashrc` to reduce typing: `$ t unicorn.pn
 Not really. The `mv` command isn't cross-platform and moving to trash is not just about moving the file to a "trash" directory. On all OSes you'll run into file conflicts. The user won't easily be able to restore the file. It won't work on an external drive. The trash directory location varies between Windows versions. For Linux there's a whole [spec](http://www.ramendik.ru/docs/trashspec.html) you need to follow. On OS X you'll loose the [Put back](http://mac-fusion.com/trash-tip-how-to-put-files-back-to-their-original-location/) feature.
 
 
+## Related
+
+See [`empty-trash`](https://github.com/sindresorhus/empty-trash) for emptying the trash.
+
+
 ## License
 
 MIT © [Sindre Sorhus](http://sindresorhus.com)
