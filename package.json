@@ -21,9 +21,7 @@
   "files": [
     "index.js",
     "cli.js",
-    "vendor/cmdutils",
-    "vendor/trash-cli/trashcli/*.py",
-    "vendor/trash-put"
+    "vendor/cmdutils"
   ],
   "keywords": [
     "cli-app",
@@ -46,7 +44,8 @@
     "escape-string-applescript": "^1.0.0",
     "minimist": "^1.1.0",
     "run-applescript": "^1.0.0",
-    "update-notifier": "^0.2.1"
+    "update-notifier": "^0.2.1",
+    "xdg-trash": "^1.0.0"
   },
   "devDependencies": {
     "mocha": "*"

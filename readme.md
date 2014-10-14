@@ -48,7 +48,7 @@ trash(['unicorn.png', 'rainbow.png'], function (err) {
 
 On OS X AppleScript is used as it's the only way to support built-in features such as [Put back](http://mac-fusion.com/trash-tip-how-to-put-files-back-to-their-original-location/).
 
-On Linux [trash-cli](https://github.com/andreafrancia/trash-cli) is used. Requires Python. [Help wanted on a Node version.](https://github.com/sindresorhus/trash/issues/1)
+On Linux [xdg-trash](https://github.com/kevva/xdg-trash) is used.
 
 On Windows [cmdutils](http://www.maddogsw.com/cmdutils/) is used.
 

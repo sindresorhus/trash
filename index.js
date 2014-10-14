@@ -3,6 +3,7 @@ var path = require('path');
 var execFile = require('child_process').execFile;
 var escapeStringApplescript = require('escape-string-applescript');
 var runApplescript = require('run-applescript');
+var trash = require('xdg-trash');
 
 function osx(paths, cb) {
 	var script = '' +
@@ -25,16 +26,7 @@ function osx(paths, cb) {
 }
 
 function linux(paths, cb) {
-	execFile('./trash-put', paths, {
-		cwd: path.join(__dirname, 'vendor')
-	}, function (err) {
-		if (err && /cannot trash non existent/.test(err.message)) {
-			cb(new Error('Item doesn\'t exist'));
-			return;
-		}
-
-		cb(err);
-	});
+	trash(paths, cb);
 }
 
 function win(paths, cb) {
