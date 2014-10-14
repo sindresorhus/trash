@@ -1,40 +1,27 @@
 #!/usr/bin/env node
 'use strict';
 var updateNotifier = require('update-notifier');
-var argv = require('minimist')(process.argv.slice(2), {string: ['_']});
-var pkg = require('./package.json');
+var meow = require('meow');
 var trash = require('./');
-var input = argv._;
 
-function help() {
-	console.log([
+var cli = meow({
+	help: [
+		'Usage',
+		'  trash <path> [<path> ...]',
 		'',
-		'  ' + pkg.description,
-		'',
-		'  Usage',
-		'    trash <path> [<path> ...]',
-		'',
-		'  Example',
-		'    trash unicorn.png rainbow.png'
-	].join('\n'));
-}
+		'Example',
+		'  trash unicorn.png rainbow.png'
+	].join('\n')
+}, {
+	string: ['_']
+});
 
 updateNotifier({
-	packageName: pkg.name,
-	packageVersion: pkg.version
+	packageName: cli.pkg.name,
+	packageVersion: cli.pkg.version
 }).notify();
 
-if (argv.version) {
-	console.log(pkg.version);
-	return;
-}
-
-if (input.length === 0 || argv.help) {
-	help();
-	return;
-}
-
-trash(input, function (err) {
+trash(cli.input, function (err) {
 	if (err) {
 		console.error(err.message);
 		process.exit(1);

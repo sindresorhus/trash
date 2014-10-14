@@ -42,7 +42,7 @@
   ],
   "dependencies": {
     "escape-string-applescript": "^1.0.0",
-    "minimist": "^1.1.0",
+    "meow": "^1.0.0",
     "run-applescript": "^1.0.0",
     "update-notifier": "^0.2.1",
     "xdg-trash": "^1.0.0"
