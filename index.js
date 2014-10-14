@@ -3,7 +3,7 @@ var path = require('path');
 var execFile = require('child_process').execFile;
 var escapeStringApplescript = require('escape-string-applescript');
 var runApplescript = require('run-applescript');
-var trash = require('xdg-trash');
+var xdgTrash = require('xdg-trash');
 
 function osx(paths, cb) {
 	var script = '' +
@@ -23,10 +23,6 @@ function osx(paths, cb) {
 
 		cb(err);
 	});
-}
-
-function linux(paths, cb) {
-	trash(paths, cb);
 }
 
 function win(paths, cb) {
@@ -58,5 +54,5 @@ module.exports = function (paths, cb) {
 		return;
 	}
 
-	linux(paths, cb);
+	xdgTrash(paths, cb);
 };
