@@ -36,7 +36,7 @@ This is useful for using only npm's package.json `scripts` section to save tasks
 
 ```
 {
-  "devDendencies":{
+  "devDependencies":{
     "trash": "",
     "browserify": ""
   },
