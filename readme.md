@@ -30,7 +30,7 @@ $ trash --help
 
 `--force` option will suppress 1 return value, so you can use it in cross-platform chains like this:
 
-`trash build/ && BUILDSTUFF`
+`trash --force build/ && BUILDSTUFF`
 
 This is useful for using only npm's package.json `scripts` section to save tasks for mac, windows & linux:
 
@@ -41,7 +41,7 @@ This is useful for using only npm's package.json `scripts` section to save tasks
     "browserify": ""
   },
   "scripts":{
-    "build": "trash build/ && browserify index.js -o build/bundle.js"
+    "build": "trash --force build/ && browserify index.js -o build/bundle.js"
   }
 }
 ```
