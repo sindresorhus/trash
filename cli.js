@@ -17,14 +17,21 @@ var cli = meow({
 	boolean: ['force']
 });
 
+var errExitCode = cli.flags.force ? 0 : 1;
+
 updateNotifier({
 	packageName: cli.pkg.name,
 	packageVersion: cli.pkg.version
 }).notify();
 
+if (cli.input.length === 0) {
+	console.error('You need to specify at least one path');
+	process.exit(errExitCode);
+}
+
 trash(cli.input, function (err) {
 	if (err) {
 		console.error(err.message);
-		process.exit(cli.flags.force ? 0 : 1);
+		process.exit(errExitCode);
 	}
 });
