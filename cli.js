@@ -13,8 +13,8 @@ var cli = meow({
 		'  trash unicorn.png rainbow.png'
 	].join('\n')
 }, {
-	'string': ['_'],
-	'boolean': ['force']
+	string: ['_'],
+	boolean: ['force']
 });
 
 updateNotifier({
@@ -25,6 +25,6 @@ updateNotifier({
 trash(cli.input, function (err) {
 	if (err) {
 		console.error(err.message);
-		process.exit(!cli.flags.force);
+		process.exit(cli.flags.force ? 0 : 1);
 	}
 });

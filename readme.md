@@ -28,23 +28,13 @@ $ trash --help
 
 *Globbing support is left up to your shell, but `$ trash *.png` should expand to the above in most shells.*
 
-`--force` option will suppress 1 return value, so you can use it in cross-platform chains like this:
+The `--force` option makes it always succeed even on errors by exiting with code `1`:
 
-`trash --force build/ && BUILDSTUFF`
-
-This is useful for using only npm's package.json `scripts` section to save tasks for mac, windows & linux:
-
+```sh
+$ trash --force build && BUILDSTUFF
 ```
-{
-  "devDependencies":{
-    "trash": "",
-    "browserify": ""
-  },
-  "scripts":{
-    "build": "trash --force build/ && browserify index.js -o build/bundle.js"
-  }
-}
-```
+
+This can be useful when used in platform agnostic scripts like [`npm` package.json scripts](https://docs.npmjs.com/misc/scripts), as eg. `trash build; BUILDSTUFF` doesn't work on Windows.
 
 
 ## API
