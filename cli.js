@@ -7,13 +7,14 @@ var trash = require('./');
 var cli = meow({
 	help: [
 		'Usage',
-		'  trash <path> [<path> ...]',
+		'  trash [--force] <path> [<path> ...]',
 		'',
 		'Example',
 		'  trash unicorn.png rainbow.png'
 	].join('\n')
 }, {
-	string: ['_']
+	'string': ['_'],
+	'boolean': ['force']
 });
 
 updateNotifier({
@@ -24,6 +25,6 @@ updateNotifier({
 trash(cli.input, function (err) {
 	if (err) {
 		console.error(err.message);
-		process.exit(1);
+		process.exit(!cli.flags.force);
 	}
 });
