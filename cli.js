@@ -19,10 +19,7 @@ var cli = meow({
 
 var errExitCode = cli.flags.force ? 0 : 1;
 
-updateNotifier({
-	packageName: cli.pkg.name,
-	packageVersion: cli.pkg.version
-}).notify();
+updateNotifier({pkg: cli.pkg}).notify();
 
 if (cli.input.length === 0) {
 	console.error('You need to specify at least one path');
