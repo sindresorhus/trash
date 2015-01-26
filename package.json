@@ -42,9 +42,8 @@
     "script"
   ],
   "dependencies": {
-    "escape-string-applescript": "^1.0.0",
     "meow": "^2.0.0",
-    "run-applescript": "^1.0.0",
+    "osx-trash": "^1.0.0",
     "update-notifier": "^0.3.0",
     "xdg-trash": "^1.0.0"
   },
