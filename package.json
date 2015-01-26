@@ -21,8 +21,7 @@
   },
   "files": [
     "index.js",
-    "cli.js",
-    "vendor/cmdutils"
+    "cli.js"
   ],
   "keywords": [
     "cli-app",
@@ -45,6 +44,7 @@
     "meow": "^2.0.0",
     "osx-trash": "^1.0.0",
     "update-notifier": "^0.3.0",
+    "win-trash": "^1.0.0",
     "xdg-trash": "^1.0.0"
   },
   "devDependencies": {
