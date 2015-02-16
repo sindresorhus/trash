@@ -41,7 +41,7 @@
     "script"
   ],
   "dependencies": {
-    "meow": "^2.0.0",
+    "meow": "^3.0.0",
     "osx-trash": "^1.0.0",
     "update-notifier": "^0.3.0",
     "win-trash": "^1.0.0",
