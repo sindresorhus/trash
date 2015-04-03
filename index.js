@@ -1,14 +1,9 @@
 'use strict';
-module.exports = function (paths, cb) {
-	if (process.platform === 'darwin') {
-		require('osx-trash')(paths, cb);
-		return;
-	}
 
-	if (process.platform === 'win32') {
-		require('win-trash')(paths, cb);
-		return;
-	}
-
-	require('xdg-trash')(paths, cb);
-};
+if (process.platform === 'darwin') {
+	module.exports = require('osx-trash');
+} else if (process.platform === 'win32') {
+	module.exports = require('win-trash');
+} else {
+	module.exports = require('xdg-trash');
+}
