@@ -7,11 +7,9 @@
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
-    "url": "http://sindresorhus.com"
+    "url": "sindresorhus.com"
   },
-  "bin": {
-    "trash": "cli.js"
-  },
+  "bin": "cli.js",
   "preferGlobal": true,
   "engines": {
     "node": ">=0.10.0"
