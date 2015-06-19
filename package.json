@@ -46,6 +46,7 @@
     "xdg-trash": "^1.0.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "path-exists": "^1.0.0"
   }
 }
