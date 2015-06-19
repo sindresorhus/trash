@@ -7,11 +7,11 @@ var trash = require('./');
 var cli = meow({
 	help: [
 		'Usage',
-		'  trash [--force] <path> [<path> ...]',
+		'  $ trash [--force] <path> [<path> ...]',
 		'',
 		'Example',
-		'  trash unicorn.png rainbow.png'
-	].join('\n')
+		'  $ trash unicorn.png rainbow.png'
+	]
 }, {
 	string: ['_'],
 	boolean: ['force']

@@ -12,25 +12,25 @@ In contrast to `rm` which is [dangerous](http://docstore.mik.ua/orelly/unix3/upt
 
 ## CLI
 
-```sh
+```
 $ npm install --global trash
 ```
 
-```sh
+```
 $ trash --help
 
   Usage
-    trash [--force] <path> [<path> ...]
+    $ trash [--force] <path> [<path> ...]
 
   Example
-    trash unicorn.png rainbow.png
+    $ trash unicorn.png rainbow.png
 ```
 
 *Globbing support is left up to your shell, but `$ trash *.png` should expand to the above in most shells.*
 
 The `--force` option makes it always succeed even on errors by exiting with code `1`:
 
-```sh
+```
 $ trash --force build && BUILDSTUFF
 ```
 
@@ -39,7 +39,7 @@ This can be useful when used in platform agnostic scripts like [`npm` package.js
 
 ## API
 
-```sh
+```
 $ npm install --save trash
 ```
 
