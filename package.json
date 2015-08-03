@@ -41,10 +41,10 @@
   "dependencies": {
     "each-async": "^1.1.1",
     "meow": "^3.0.0",
-    "osx-trash": "^1.0.0",
+    "osx-trash": "^1.0.1",
     "path-exists": "^1.0.0",
     "update-notifier": "^0.3.0",
-    "win-trash": "^1.0.0",
+    "win-trash": "^1.0.1",
     "xdg-trash": "^1.0.0"
   },
   "devDependencies": {

@@ -26,7 +26,7 @@ it('should trash files', function (cb) {
 		weirdName,
 		123
 	], function (err) {
-		assert(!err, err);
+		assert.ifError(err);
 		assert(!pathExists.sync('fixture'));
 		assert(!pathExists.sync('fixture2'));
 		assert(!pathExists.sync(weirdName));
@@ -57,7 +57,7 @@ it('should trash a dir', function (cb) {
 		'fdir',
 		321
 	], function (err) {
-		assert(!err, err);
+		assert.ifError(err);
 		assert(!pathExists.sync('fdir'));
 		assert(!pathExists.sync(321));
 		cb();
@@ -69,7 +69,7 @@ it('should skip missing files', function (cb) {
 		'foobar',
 		'unicorn'
 	], function (err) {
-		assert(!err, err);
+		assert.ifError(err);
 		cb();
 	});
 });
