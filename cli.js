@@ -9,25 +9,23 @@ var trash = require('./');
 var cli = meow({
 	help: [
 		'Usage',
-		'  $ trash [--force] <path> [<path> ...]',
+		'  $ trash <path> [<path> ...]',
 		'',
 		'Example',
 		'  $ trash unicorn.png rainbow.png'
 	]
 }, {
-	string: ['_'],
-	boolean: ['force']
+	string: ['_']
 });
-
-var errExitCode = cli.flags.force ? 0 : 1;
-var files = [];
 
 updateNotifier({pkg: cli.pkg}).notify();
 
 if (cli.input.length === 0) {
 	console.error('You need to specify at least one path');
-	process.exit(errExitCode);
+	process.exit(1);
 }
+
+var files = [];
 
 eachAsync(cli.input, function (el, i, cb) {
 	pathExists(el, function (err, exists) {
@@ -45,13 +43,13 @@ eachAsync(cli.input, function (el, i, cb) {
 }, function (err) {
 	if (err) {
 		console.error(err.message);
-		process.exit(errExitCode);
+		process.exit(1);
 	}
 
 	trash(files, function (err) {
 		if (err) {
 			console.error(err.message);
-			process.exit(errExitCode);
+			process.exit(1);
 		}
 	});
 });

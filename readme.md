@@ -20,21 +20,13 @@ $ npm install --global trash
 $ trash --help
 
   Usage
-    $ trash [--force] <path> [<path> ...]
+    $ trash <path> [<path> ...]
 
   Example
     $ trash unicorn.png rainbow.png
 ```
 
 *Globbing support is left up to your shell, but `$ trash *.png` should expand to the above in most shells.*
-
-The `--force` option makes it always succeed even on errors by exiting with code `1`:
-
-```
-$ trash --force build && BUILDSTUFF
-```
-
-This can be useful when used in platform agnostic scripts like [`npm` package.json scripts](https://docs.npmjs.com/misc/scripts), as eg. `trash build; BUILDSTUFF` doesn't work on Windows.
 
 
 ## API
