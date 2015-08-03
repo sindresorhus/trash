@@ -1,4 +1,5 @@
 'use strict';
+var childProcess = require('child_process');
 var fs = require('fs');
 var path = require('path');
 var assert = require('assert');
@@ -59,6 +60,16 @@ it('should trash a dir', function (cb) {
 		assert(!err, err);
 		assert(!pathExists.sync('fdir'));
 		assert(!pathExists.sync(321));
+		cb();
+	});
+});
+
+it('should skip missing files', function (cb) {
+	childProcess.execFile(path.join(__dirname, '../cli.js'), [
+		'foobar',
+		'unicorn'
+	], function (err) {
+		assert(!err, err);
 		cb();
 	});
 });
