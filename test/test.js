@@ -25,8 +25,7 @@ it('should trash files', function (cb) {
 		'fixture2',
 		weirdName,
 		123
-	], function (err) {
-		assert.ifError(err);
+	]).then(function () {
 		assert(!pathExists.sync('fixture'));
 		assert(!pathExists.sync('fixture2'));
 		assert(!pathExists.sync(weirdName));
@@ -56,8 +55,7 @@ it('should trash a dir', function (cb) {
 	trash([
 		'fdir',
 		321
-	], function (err) {
-		assert.ifError(err);
+	]).then(function () {
 		assert(!pathExists.sync('fdir'));
 		assert(!pathExists.sync(321));
 		cb();

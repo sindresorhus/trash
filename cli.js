@@ -2,8 +2,8 @@
 'use strict';
 var updateNotifier = require('update-notifier');
 var meow = require('meow');
-var eachAsync = require('each-async');
 var pathExists = require('path-exists');
+var Promise = require('pinkie-promise');
 var trash = require('./');
 
 var cli = meow({
@@ -25,31 +25,10 @@ if (cli.input.length === 0) {
 	process.exit(1);
 }
 
-var files = [];
-
-eachAsync(cli.input, function (el, i, cb) {
-	pathExists(el, function (err, exists) {
-		if (err) {
-			cb(err);
-			return;
-		}
-
-		if (exists) {
-			files.push(el);
-		}
-
-		cb();
+Promise.all(cli.input.map(function (el) {
+	return pathExists(el).then(function (exists) {
+		return exists ? el : null;
 	});
-}, function (err) {
-	if (err) {
-		console.error(err.message);
-		process.exit(1);
-	}
-
-	trash(files, function (err) {
-		if (err) {
-			console.error(err.message);
-			process.exit(1);
-		}
-	});
+})).then(function (files) {
+	return trash(files.filter(Boolean));
 });

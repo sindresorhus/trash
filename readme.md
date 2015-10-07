@@ -36,9 +36,9 @@ $ npm install --save trash
 ```
 
 ```js
-var trash = require('trash');
+const trash = require('trash');
 
-trash(['unicorn.png', 'rainbow.png'], function (err) {
+trash(['unicorn.png', 'rainbow.png']).then(() => {
 	console.log('done');
 });
 ```

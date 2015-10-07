@@ -39,13 +39,14 @@
     "script"
   ],
   "dependencies": {
-    "each-async": "^1.1.1",
     "meow": "^3.0.0",
-    "osx-trash": "^1.0.1",
-    "path-exists": "^1.0.0",
+    "osx-trash": "^2.0.0",
+    "path-exists": "^2.0.0",
+    "pify": "^2.2.0",
+    "pinkie-promise": "^1.0.0",
     "update-notifier": "^0.3.0",
-    "win-trash": "^1.0.1",
-    "xdg-trash": "^1.0.0"
+    "win-trash": "^2.0.0",
+    "xdg-trash": "^2.0.1"
   },
   "devDependencies": {
     "mocha": "*",
