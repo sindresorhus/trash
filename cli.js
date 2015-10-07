@@ -6,15 +6,13 @@ var pathExists = require('path-exists');
 var Promise = require('pinkie-promise');
 var trash = require('./');
 
-var cli = meow({
-	help: [
-		'Usage',
-		'  $ trash <path> [<path> ...]',
-		'',
-		'Example',
-		'  $ trash unicorn.png rainbow.png'
-	]
-}, {
+var cli = meow([
+	'Usage',
+	'  $ trash <path> [<path> ...]',
+	'',
+	'Example',
+	'  $ trash unicorn.png rainbow.png'
+], {
 	string: ['_']
 });
 
