@@ -1,6 +1,6 @@
 # ![trash](https://cdn.rawgit.com/sindresorhus/trash/3aa70853f1efb58d0d2512e32d617d246c88953c/media/logo.svg)
 
-> Cross-platform command-line app for moving files and directories to the trash  
+> Cross-platform command-line app for moving files and directories to the trash
 > A safer alternative to [`rm`](http://en.wikipedia.org/wiki/Rm_(Unix))
 
 [![Build Status](https://travis-ci.org/sindresorhus/trash.svg?branch=master)](https://travis-ci.org/sindresorhus/trash) ![](http://img.shields.io/badge/unicorn-approved-ff69b4.svg)
@@ -36,9 +36,9 @@ $ npm install --save trash
 ```
 
 ```js
-var trash = require('trash');
+const trash = require('trash');
 
-trash(['unicorn.png', 'rainbow.png'], function (err) {
+trash(['unicorn.png', 'rainbow.png']).then(() => {
 	console.log('done');
 });
 ```
