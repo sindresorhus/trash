@@ -1,73 +1,70 @@
-'use strict';
-var childProcess = require('child_process');
-var fs = require('fs');
-var path = require('path');
-var assert = require('assert');
-var pathExists = require('path-exists');
-var trash = require('../');
+import childProcess from 'child_process';
+import fs from 'fs';
+import path from 'path';
+import pathExists from 'path-exists';
+import pify from 'pify';
+import test from 'ava';
+import fn from '../';
 
 process.chdir(__dirname);
 
-it('should trash files', function (cb) {
-	var weirdName = process.platform === 'darwin' ? 'weird\\\\name\\"\'' : 'fixture3';
+test('should trash files', async t => {
+	const weirdName = process.platform === 'darwin' ? 'weird\\\\name\\"\'' : 'fixture3';
 
 	fs.writeFileSync('fixture', '');
 	fs.writeFileSync('fixture2', '');
 	fs.writeFileSync(weirdName, '');
 	fs.writeFileSync('123');
-	assert(pathExists.sync('fixture'));
-	assert(pathExists.sync('fixture2'));
-	assert(pathExists.sync(weirdName));
-	assert(pathExists.sync('123'));
+	t.true(pathExists.sync('fixture'));
+	t.true(pathExists.sync('fixture2'));
+	t.true(pathExists.sync(weirdName));
+	t.true(pathExists.sync('123'));
 
-	trash([
+	await fn([
 		'fixture',
 		'fixture2',
 		weirdName,
 		123
-	]).then(function () {
-		assert(!pathExists.sync('fixture'));
-		assert(!pathExists.sync('fixture2'));
-		assert(!pathExists.sync(weirdName));
-		assert(!pathExists.sync('123'));
-		cb();
-	});
+	]);
+
+	t.false(pathExists.sync('fixture'));
+	t.false(pathExists.sync('fixture2'));
+	t.false(pathExists.sync(weirdName));
+	t.false(pathExists.sync('123'));
 });
 
-it('should trash a dir', function (cb) {
-	var d1f1 = path.join('fdir', 'fixture');
-	var d1f2 = path.join('fdir', 'fixture2');
-	var d2f1 = path.join('321', 'fixture');
-	var d2f2 = path.join('321', 'fixture2');
+test('should trash a dir', async t => {
+	const d1f1 = path.join('fdir', 'fixture');
+	const d1f2 = path.join('fdir', 'fixture2');
+	const d2f1 = path.join('321', 'fixture');
+	const d2f2 = path.join('321', 'fixture2');
 
 	fs.mkdirSync('fdir');
 	fs.writeFileSync(d1f1, '');
 	fs.writeFileSync(d1f2, '');
-	assert(pathExists.sync(d1f1));
-	assert(pathExists.sync(d1f2));
+	t.true(pathExists.sync(d1f1));
+	t.true(pathExists.sync(d1f2));
 
 	fs.mkdirSync('321');
 	fs.writeFileSync(d2f1, '');
 	fs.writeFileSync(d2f2, '');
-	assert(pathExists.sync(d2f1));
-	assert(pathExists.sync(d2f2));
+	t.true(pathExists.sync(d2f1));
+	t.true(pathExists.sync(d2f2));
 
-	trash([
+	await fn([
 		'fdir',
 		321
-	]).then(function () {
-		assert(!pathExists.sync('fdir'));
-		assert(!pathExists.sync(321));
-		cb();
-	});
+	]);
+
+	t.false(pathExists.sync('fdir'));
+	t.false(pathExists.sync(321));
 });
 
-it('should skip missing files', function (cb) {
-	childProcess.execFile(path.join(__dirname, '../cli.js'), [
+test('should skip missing files', async t => {
+	const cli = path.join(__dirname, '../cli.js');
+
+	await pify(childProcess.execFile)(cli, [
 		'foobar',
 		'unicorn'
-	], function (err) {
-		assert.ifError(err);
-		cb();
-	});
+	]);
 });
