@@ -15,7 +15,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "ava"
+    "test": "xo && ava"
   },
   "files": [
     "index.js",
@@ -50,6 +50,12 @@
   "devDependencies": {
     "ava": "*",
     "path-exists": "^2.0.0",
-    "pify": "^2.2.0"
+    "pify": "^2.2.0",
+    "xo": "*"
+  },
+  "xo": {
+    "ignore": [
+      "test/test.js"
+    ]
   }
 }
