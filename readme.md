@@ -5,9 +5,9 @@
 
 [![Build Status](https://travis-ci.org/sindresorhus/trash.svg?branch=master)](https://travis-ci.org/sindresorhus/trash) ![](http://img.shields.io/badge/unicorn-approved-ff69b4.svg)
 
-Works on OS X, Linux and Windows.
+Works on OS X, Linux, and Windows.
 
-In contrast to `rm` which is [dangerous](http://docstore.mik.ua/orelly/unix3/upt/ch14_03.htm) and permanently delete files, this only moves them to the trash, which is much safer and reversible. You should not alias `rm` to `trash` however as that would break most scripts relying on `rm` behaviour. Rather use `trash` from the CLI and in your own scripts. I would also recommend reading my guide on [safeguarding `rm`](https://github.com/sindresorhus/guides/blob/master/how-not-to-rm-yourself.md#safeguard-rm).
+In contrast to `rm` which is [dangerous](http://docstore.mik.ua/orelly/unix3/upt/ch14_03.htm) and permanently delete files, this only moves them to the trash, which is much safer and reversible. You should not alias `rm` to `trash` however as that would break most scripts relying on `rm` behavior. Rather use `trash` from the CLI and in your own scripts. I would also recommend reading my guide on [safeguarding `rm`](https://github.com/sindresorhus/guides/blob/master/how-not-to-rm-yourself.md#safeguard-rm).
 
 
 ## CLI

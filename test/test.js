@@ -61,7 +61,7 @@ test('should trash a dir', async t => {
 });
 
 test('should skip missing files', async t => {
-	const cli = path.join(__dirname, '../cli.js');
+	const cli = path.join(__dirname, '..', 'cli.js');
 
 	await pify(childProcess.execFile)(cli, [
 		'foobar',
