@@ -19,7 +19,7 @@ module.exports = function (paths) {
 	}
 
 	if (process.platform === 'win32') {
-		return require('win-trash')(paths);
+		return require('./lib/win')(paths);
 	}
 
 	return require('xdg-trash')(paths);

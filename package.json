@@ -41,7 +41,6 @@
     "pify": "^2.2.0",
     "pinkie-promise": "^1.0.0",
     "run-applescript": "^2.0.0",
-    "win-trash": "^2.0.0",
     "xdg-trash": "^2.0.1"
   },
   "devDependencies": {
