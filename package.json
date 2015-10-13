@@ -1,7 +1,7 @@
 {
   "name": "trash",
   "version": "2.0.0",
-  "description": "Cross-platform command-line app for moving files and directories to the trash - A safer alternative to `rm`",
+  "description": "Move files and directories to the trash",
   "license": "MIT",
   "repository": "sindresorhus/trash",
   "author": {
@@ -9,8 +9,6 @@
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com"
   },
-  "bin": "cli.js",
-  "preferGlobal": true,
   "engines": {
     "node": ">=0.10.0"
   },
@@ -18,43 +16,39 @@
     "test": "xo && ava"
   },
   "files": [
-    "index.js",
-    "cli.js"
+    "index.js"
   ],
   "keywords": [
-    "cli-app",
-    "cli",
-    "bin",
     "trash",
     "recycle",
+    "bin",
     "rm",
+    "rmrf",
+    "rimraf",
     "remove",
     "delete",
+    "del",
     "file",
     "files",
     "dir",
     "directory",
     "directories",
-    "shell",
-    "script"
+    "xdg"
   ],
   "dependencies": {
-    "meow": "^3.0.0",
     "osx-trash": "^2.0.0",
-    "path-exists": "^2.0.0",
-    "pinkie-promise": "^1.0.0",
-    "update-notifier": "^0.3.0",
     "win-trash": "^2.0.0",
     "xdg-trash": "^2.0.1"
   },
   "devDependencies": {
     "ava": "*",
-    "pify": "^2.2.0",
+    "path-exists": "^2.0.0",
+    "tempfile": "^1.1.1",
     "xo": "*"
   },
   "xo": {
     "ignore": [
-      "test/test.js"
+      "test.js"
     ]
   }
 }

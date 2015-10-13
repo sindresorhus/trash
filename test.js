@@ -1,14 +1,15 @@
-import childProcess from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import pathExists from 'path-exists';
-import pify from 'pify';
 import test from 'ava';
-import fn from '../';
+import tempfile from 'tempfile';
+import fn from './';
 
-process.chdir(__dirname);
+const tmpdir = tempfile();
+fs.mkdirSync(tmpdir);
+process.chdir(tmpdir);
 
-test('should trash files', async t => {
+test('files', async t => {
 	const weirdName = process.platform === 'darwin' ? 'weird\\\\name\\"\'' : 'fixture3';
 
 	fs.writeFileSync('fixture', '');
@@ -33,7 +34,7 @@ test('should trash files', async t => {
 	t.false(pathExists.sync('123'));
 });
 
-test('should trash a dir', async t => {
+test('directories', async t => {
 	const d1f1 = path.join('fdir', 'fixture');
 	const d1f2 = path.join('fdir', 'fixture2');
 	const d2f1 = path.join('321', 'fixture');
@@ -58,13 +59,4 @@ test('should trash a dir', async t => {
 
 	t.false(pathExists.sync('fdir'));
 	t.false(pathExists.sync(321));
-});
-
-test('should skip missing files', async t => {
-	const cli = path.join(__dirname, '..', 'cli.js');
-
-	await pify(childProcess.execFile)(cli, [
-		'foobar',
-		'unicorn'
-	]);
 });

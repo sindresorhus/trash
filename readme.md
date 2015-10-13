@@ -1,39 +1,22 @@
 # ![trash](https://cdn.rawgit.com/sindresorhus/trash/1cdbd660976d739eeb45447bb6b62c41ac4a3ecf/media/logo.svg)
 
-> Cross-platform command-line app for moving files and directories to the trash  
-> A safer alternative to [`rm`](http://en.wikipedia.org/wiki/Rm_(Unix))
+> Move files and directories to the trash
 
-[![Build Status](https://travis-ci.org/sindresorhus/trash.svg?branch=master)](https://travis-ci.org/sindresorhus/trash) ![](http://img.shields.io/badge/unicorn-approved-ff69b4.svg)
+[![Build Status](https://travis-ci.org/sindresorhus/trash.svg?branch=master)](https://travis-ci.org/sindresorhus/trash)
 
 Works on OS X, Linux, and Windows.
 
-In contrast to `rm` which is [dangerous](http://docstore.mik.ua/orelly/unix3/upt/ch14_03.htm) and permanently delete files, this only moves them to the trash, which is much safer and reversible. You should not alias `rm` to `trash` however as that would break most scripts relying on `rm` behavior. Rather use `trash` from the CLI and in your own scripts. I would also recommend reading my guide on [safeguarding `rm`](https://github.com/sindresorhus/guides/blob/master/how-not-to-rm-yourself.md#safeguard-rm).
+In contrast to [`fs.unlink`](https://nodejs.org/api/fs.html#fs_fs_unlink_path_callback), [`del`](https://github.com/sindresorhus/del), and [`rimraf`](https://github.com/isaacs/rimraf) which permanently delete files, this only moves them to the trash, which is much safer and reversible.
 
 
-## CLI
-
-```
-$ npm install --global trash
-```
-
-```
-$ trash --help
-
-  Usage
-    $ trash <path> [<path> ...]
-
-  Example
-    $ trash unicorn.png rainbow.png
-```
-
-*Globbing support is left up to your shell, but `$ trash *.png` should expand to the above in most shells.*
-
-
-## API
+## Install
 
 ```
 $ npm install --save trash
 ```
+
+
+## Usage
 
 ```js
 const trash = require('trash');
@@ -46,28 +29,25 @@ trash(['unicorn.png', 'rainbow.png']).then(() => {
 
 ## Info
 
-On OS X [`osx-trash`](https://github.com/sindresorhus/osx-trash) is used.
+On OS X, [`osx-trash`](https://github.com/sindresorhus/osx-trash) is used.
 
-On Linux [`xdg-trash`](https://github.com/kevva/xdg-trash) is used.
+On Linux, [`xdg-trash`](https://github.com/kevva/xdg-trash) is used.
 
-On Windows [`cmdutils`](http://www.maddogsw.com/cmdutils/) is used.
-
-
-## Tip
-
-Add `alias t=trash` to your `.zshrc`/`.bashrc` to reduce typing: `$ t unicorn.png`.
+On Windows, [`cmdutils`](http://www.maddogsw.com/cmdutils/) is used.
 
 
 ## FAQ
 
 ### But I can do the same thing with `mv`
 
-Not really. The `mv` command isn't cross-platform and moving to trash is not just about moving the file to a "trash" directory. On all OSes you'll run into file conflicts. The user won't easily be able to restore the file. It won't work on an external drive. The trash directory location varies between Windows versions. For Linux there's a whole [spec](http://www.ramendik.ru/docs/trashspec.html) you need to follow. On OS X you'll loose the [Put back](http://mac-fusion.com/trash-tip-how-to-put-files-back-to-their-original-location/) feature.
+Not really. The `mv` command isn't cross-platform and moving to trash is not just about moving the file to a "trash" directory. On all OSes you'll run into file conflicts. The user won't easily be able to restore the file. It won't work on an external drive. The trash directory location varies between Windows versions. For Linux, there's a whole [spec](http://www.ramendik.ru/docs/trashspec.html) you need to follow. On OS X, you'll lose the [Put back](http://mac-fusion.com/trash-tip-how-to-put-files-back-to-their-original-location/) feature.
 
 
 ## Related
 
-See [`empty-trash`](https://github.com/sindresorhus/empty-trash) for emptying the trash.
+- [trash-cli](https://github.com/sindresorhus/trash-cli) - CLI for this module
+- [empty-trash](https://github.com/sindresorhus/empty-trash) - Empty the trash
+- [del](https://github.com/sindresorhus/del) - Delete files/folders using globs
 
 
 ## License
