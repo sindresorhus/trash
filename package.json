@@ -16,7 +16,8 @@
     "test": "xo && ava"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "lib"
   ],
   "keywords": [
     "trash",
@@ -36,7 +37,10 @@
     "xdg"
   ],
   "dependencies": {
-    "osx-trash": "^2.0.0",
+    "escape-string-applescript": "^1.0.0",
+    "pify": "^2.2.0",
+    "pinkie-promise": "^1.0.0",
+    "run-applescript": "^2.0.0",
     "win-trash": "^2.0.0",
     "xdg-trash": "^2.0.1"
   },

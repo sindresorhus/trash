@@ -1,9 +1,26 @@
 'use strict';
+var path = require('path');
 
-if (process.platform === 'darwin') {
-	module.exports = require('osx-trash');
-} else if (process.platform === 'win32') {
-	module.exports = require('win-trash');
-} else {
-	module.exports = require('xdg-trash');
-}
+module.exports = function (paths) {
+	if (!Array.isArray(paths)) {
+		return Promise.reject(new TypeError('Expected an array'));
+	}
+
+	if (paths.length === 0) {
+		return Promise.resolve();
+	}
+
+	paths = paths.map(function (el) {
+		return path.resolve(String(el));
+	});
+
+	if (process.platform === 'darwin') {
+		return require('./lib/osx')(paths);
+	}
+
+	if (process.platform === 'win32') {
+		return require('win-trash')(paths);
+	}
+
+	return require('xdg-trash')(paths);
+};
