@@ -1,4 +1,4 @@
-# ![trash](https://cdn.rawgit.com/sindresorhus/trash/3aa70853f1efb58d0d2512e32d617d246c88953c/media/logo.svg)
+# ![trash](https://cdn.rawgit.com/sindresorhus/trash/1cdbd660976d739eeb45447bb6b62c41ac4a3ecf/media/logo.svg)
 
 > Cross-platform command-line app for moving files and directories to the trash  
 > A safer alternative to [`rm`](http://en.wikipedia.org/wiki/Rm_(Unix))
