@@ -15,7 +15,7 @@ test('files', async t => {
 	fs.writeFileSync('fixture', '');
 	fs.writeFileSync('fixture2', '');
 	fs.writeFileSync(weirdName, '');
-	fs.writeFileSync('123');
+	fs.writeFileSync('123', '');
 	t.true(pathExists.sync('fixture'));
 	t.true(pathExists.sync('fixture2'));
 	t.true(pathExists.sync(weirdName));

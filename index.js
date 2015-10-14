@@ -1,5 +1,6 @@
 'use strict';
 var path = require('path');
+var pathExists = require('path-exists');
 
 module.exports = function (paths) {
 	if (!Array.isArray(paths)) {
@@ -10,8 +11,10 @@ module.exports = function (paths) {
 		return Promise.resolve();
 	}
 
-	paths = paths.map(function (el) {
-		return path.resolve(String(el));
+	paths = paths.map(function (x) {
+		return path.resolve(String(x));
+	}).filter(function (x) {
+		return pathExists.sync(x);
 	});
 
 	if (process.platform === 'darwin') {

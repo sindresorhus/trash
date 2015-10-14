@@ -1,6 +1,6 @@
 # ![trash](https://cdn.rawgit.com/sindresorhus/trash/1cdbd660976d739eeb45447bb6b62c41ac4a3ecf/media/logo.svg)
 
-> Move files and directories to the trash
+> Move files and folders to the trash
 
 [![Build Status](https://travis-ci.org/sindresorhus/trash.svg?branch=master)](https://travis-ci.org/sindresorhus/trash)
 
@@ -45,7 +45,7 @@ Not really. The `mv` command isn't cross-platform and moving to trash is not jus
 
 - [trash-cli](https://github.com/sindresorhus/trash-cli) - CLI for this module
 - [empty-trash](https://github.com/sindresorhus/empty-trash) - Empty the trash
-- [del](https://github.com/sindresorhus/del) - Delete files/folders using globs
+- [del](https://github.com/sindresorhus/del) - Delete files and folders using globs
 
 
 ## License

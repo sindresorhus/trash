@@ -1,7 +1,7 @@
 {
   "name": "trash",
   "version": "3.0.0",
-  "description": "Move files and directories to the trash",
+  "description": "Move files and folders to the trash",
   "license": "MIT",
   "repository": "sindresorhus/trash",
   "author": {
@@ -34,11 +34,14 @@
     "dir",
     "directory",
     "directories",
+    "folder",
+    "folders",
     "xdg"
   ],
   "dependencies": {
     "escape-string-applescript": "^1.0.0",
     "fs-extra": "^0.24.0",
+    "path-exists": "^2.0.0",
     "pify": "^2.2.0",
     "pinkie-promise": "^1.0.0",
     "run-applescript": "^2.0.0",
@@ -47,7 +50,6 @@
   },
   "devDependencies": {
     "ava": "*",
-    "path-exists": "^2.0.0",
     "tempfile": "^1.1.1",
     "xo": "*"
   },
