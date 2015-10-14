@@ -22,5 +22,5 @@ module.exports = function (paths) {
 		return require('./lib/win')(paths);
 	}
 
-	return require('xdg-trash')(paths);
+	return require('./lib/linux')(paths);
 };

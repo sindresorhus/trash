@@ -30,7 +30,7 @@ trash(['unicorn.png', 'rainbow.png']).then(() => {
 ## Info
 
 On OS X, [`osx-trash`](https://github.com/sindresorhus/osx-trash) is used.  
-On Linux, [`xdg-trash`](https://github.com/kevva/xdg-trash) is used.  
+On Linux, the [XDG spec](http://standards.freedesktop.org/trash-spec/trashspec-1.0.html) is followed.  
 On Windows, [`recycle-bin`](https://github.com/sindresorhus/recycle-bin) is used.
 
 

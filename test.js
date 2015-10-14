@@ -60,3 +60,32 @@ test('directories', async t => {
 	t.false(pathExists.sync('fdir'));
 	t.false(pathExists.sync(321));
 });
+
+if (process.platform === 'linux') {
+	test('create trashinfo', async t => {
+		t.plan(1);
+
+		fs.writeFileSync('f2', '');
+
+		const info = `[Trash Info]\nPath=${path.resolve('f2')}`;
+		const files = await fn(['f2']);
+		const infoFile = fs.readFileSync(files[0].info, 'utf8');
+
+		t.is(infoFile.trim().indexOf(info.trim()), 0);
+	});
+
+	test('preserve file attributes', async t => {
+		t.plan(4);
+
+		fs.writeFileSync('f3', '');
+
+		const statSrc = fs.statSync('f3');
+		const files = await fn(['f3']);
+		const statDest = fs.statSync(files[0].path);
+
+		t.is(statSrc.mode, statDest.mode);
+		t.is(statSrc.uid, statDest.uid);
+		t.is(statSrc.gid, statDest.gid);
+		t.is(statSrc.size, statDest.size);
+	});
+}
