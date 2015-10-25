@@ -27,6 +27,15 @@ trash(['unicorn.png', 'rainbow.png']).then(() => {
 ```
 
 
+## CLI
+
+To install the [`trash`](https://github.com/sindresorhus/trash-cli) command, run:
+
+```
+$ npm install --global trash-cli
+```
+
+
 ## Info
 
 On OS X, [`osx-trash`](https://github.com/sindresorhus/osx-trash) is used.  
