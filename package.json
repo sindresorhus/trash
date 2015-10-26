@@ -42,7 +42,7 @@
     "escape-string-applescript": "^1.0.0",
     "fs-extra": "^0.24.0",
     "path-exists": "^2.0.0",
-    "pify": "^2.2.0",
+    "pify": "^2.3.0",
     "pinkie-promise": "^1.0.0",
     "run-applescript": "^2.0.0",
     "uuid": "^2.0.1",
