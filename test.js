@@ -34,6 +34,20 @@ test('files', async t => {
 	t.false(pathExists.sync('123'));
 });
 
+test('glob', async t => {
+	fs.writeFileSync('fixture.jpg', '');
+	fs.writeFileSync('fixture.png', '');
+	t.true(pathExists.sync('fixture.jpg'));
+	t.true(pathExists.sync('fixture.png'));
+
+	await fn([
+		'*.jpg'
+	]);
+
+	t.false(pathExists.sync('fixture.jpg'));
+	t.true(pathExists.sync('fixture.png'));
+});
+
 test('directories', async t => {
 	const d1f1 = path.join('fdir', 'fixture');
 	const d1f2 = path.join('fdir', 'fixture2');
