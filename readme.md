@@ -21,10 +21,12 @@ $ npm install --save trash
 ```js
 const trash = require('trash');
 
-trash(['unicorn.png', 'rainbow.png']).then(() => {
+trash(['*.png', '!rainbow.png']).then(() => {
 	console.log('done');
 });
 ```
+
+*You can use [glob patterns](https://github.com/sindresorhus/globby#globbing-patterns).**
 
 
 ## CLI
