@@ -41,7 +41,7 @@
   "dependencies": {
     "escape-string-applescript": "^1.0.0",
     "fs-extra": "^0.26.2",
-    "globby": "^3.0.1",
+    "globby": "^4.0.0",
     "path-exists": "^2.0.0",
     "pify": "^2.3.0",
     "pinkie-promise": "^2.0.0",
