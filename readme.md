@@ -26,7 +26,7 @@ trash(['*.png', '!rainbow.png']).then(() => {
 });
 ```
 
-*You can use [glob patterns](https://github.com/sindresorhus/globby#globbing-patterns).**
+*You can use [glob patterns](https://github.com/sindresorhus/globby#globbing-patterns).*
 
 
 ## CLI
@@ -56,7 +56,7 @@ Not really. The `mv` command isn't cross-platform and moving to trash is not jus
 
 - [trash-cli](https://github.com/sindresorhus/trash-cli) - CLI for this module
 - [empty-trash](https://github.com/sindresorhus/empty-trash) - Empty the trash
-- [del](https://github.com/sindresorhus/del) - Delete files and folders using globs
+- [del](https://github.com/sindresorhus/del) - Delete files and folders
 
 
 ## License
