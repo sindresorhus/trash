@@ -53,10 +53,5 @@
     "ava": "*",
     "tempfile": "^1.1.1",
     "xo": "*"
-  },
-  "xo": {
-    "ignore": [
-      "test.js"
-    ]
   }
 }
