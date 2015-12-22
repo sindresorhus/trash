@@ -8,10 +8,6 @@ module.exports = function (paths) {
 		return Promise.reject(new TypeError('Expected an array'));
 	}
 
-	if (paths.length === 0) {
-		return Promise.resolve();
-	}
-
 	paths = paths.map(function (x) {
 		return String(x);
 	});
@@ -23,6 +19,10 @@ module.exports = function (paths) {
 	}).filter(function (x) {
 		return pathExists.sync(x);
 	});
+
+	if (paths.length === 0) {
+		return Promise.resolve();
+	}
 
 	switch (process.platform) {
 		case 'darwin': return require('./lib/osx')(paths);
