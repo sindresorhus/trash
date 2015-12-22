@@ -24,13 +24,9 @@ module.exports = function (paths) {
 		return pathExists.sync(x);
 	});
 
-	if (process.platform === 'darwin') {
-		return require('./lib/osx')(paths);
+	switch (process.platform) {
+		case 'darwin': return require('./lib/osx')(paths);
+		case 'win32': return require('./lib/win')(paths);
+		default: return require('./lib/linux')(paths);
 	}
-
-	if (process.platform === 'win32') {
-		return require('./lib/win')(paths);
-	}
-
-	return require('./lib/linux')(paths);
 };
