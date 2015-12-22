@@ -3,18 +3,15 @@ var path = require('path');
 var pathExists = require('path-exists');
 var globby = require('globby');
 
-// A resolve that does not accept variadic arguments so it can be used with map.
-function resolvePath(x) {
-	return path.resolve(x);
-}
-
 module.exports = function (paths) {
 	if (!Array.isArray(paths)) {
 		return Promise.reject(new TypeError('Expected an array'));
 	}
 
 	paths = globby.sync(paths.map(String), {nonull: true})
-		.map(resolvePath)
+		.map(function (x) {
+			return path.resolve(x);
+		})
 		.filter(pathExists.sync);
 
 	if (paths.length === 0) {
