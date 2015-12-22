@@ -8,9 +8,7 @@ module.exports = function (paths) {
 		return Promise.reject(new TypeError('Expected an array'));
 	}
 
-	paths = paths.map(function (x) {
-		return String(x);
-	});
+	paths = paths.map(String);
 
 	paths = globby.sync(paths, {nonull: true});
 
