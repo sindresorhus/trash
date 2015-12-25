@@ -8,29 +8,19 @@ module.exports = function (paths) {
 		return Promise.reject(new TypeError('Expected an array'));
 	}
 
+	paths = globby.sync(paths.map(String), {nonull: true})
+		.map(function (x) {
+			return path.resolve(x);
+		})
+		.filter(pathExists.sync);
+
 	if (paths.length === 0) {
 		return Promise.resolve();
 	}
 
-	paths = paths.map(function (x) {
-		return String(x);
-	});
-
-	paths = globby.sync(paths, {nonull: true});
-
-	paths = paths.map(function (x) {
-		return path.resolve(x);
-	}).filter(function (x) {
-		return pathExists.sync(x);
-	});
-
-	if (process.platform === 'darwin') {
-		return require('./lib/osx')(paths);
+	switch (process.platform) {
+		case 'darwin': return require('./lib/osx')(paths);
+		case 'win32': return require('./lib/win')(paths);
+		default: return require('./lib/linux')(paths);
 	}
-
-	if (process.platform === 'win32') {
-		return require('./lib/win')(paths);
-	}
-
-	return require('./lib/linux')(paths);
 };
