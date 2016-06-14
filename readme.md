@@ -40,8 +40,8 @@ $ npm install --global trash-cli
 
 ## Info
 
-On macOS, [`macos-trash`](https://github.com/sindresorhus/macos-trash) is used.  
-On Linux, the [XDG spec](http://standards.freedesktop.org/trash-spec/trashspec-1.0.html) is followed.  
+On macOS, [`macos-trash`](https://github.com/sindresorhus/macos-trash) is used.<br>
+On Linux, the [XDG spec](http://standards.freedesktop.org/trash-spec/trashspec-1.0.html) is followed.<br>
 On Windows, [`recycle-bin`](https://github.com/sindresorhus/recycle-bin) is used.
 
 
@@ -61,4 +61,4 @@ Not really. The `mv` command isn't cross-platform and moving to trash is not jus
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)

@@ -3,7 +3,7 @@ import path from 'path';
 import pathExists from 'path-exists';
 import test from 'ava';
 import tempfile from 'tempfile';
-import fn from './';
+import m from './';
 
 const tmpdir = tempfile();
 fs.mkdirSync(tmpdir);
@@ -21,7 +21,7 @@ test('files', async t => {
 	t.true(pathExists.sync(weirdName));
 	t.true(pathExists.sync('123'));
 
-	await fn([
+	await m([
 		'fixture',
 		'fixture2',
 		weirdName,
@@ -40,7 +40,7 @@ test('glob', async t => {
 	t.true(pathExists.sync('fixture.jpg'));
 	t.true(pathExists.sync('fixture.png'));
 
-	await fn([
+	await m([
 		'*.jpg'
 	]);
 
@@ -66,7 +66,7 @@ test('directories', async t => {
 	t.true(pathExists.sync(d2f1));
 	t.true(pathExists.sync(d2f2));
 
-	await fn([
+	await m([
 		'fdir',
 		321
 	]);
@@ -82,7 +82,7 @@ if (process.platform === 'linux') {
 		fs.writeFileSync('f2', '');
 
 		const info = `[Trash Info]\nPath=${path.resolve('f2')}`;
-		const files = await fn(['f2']);
+		const files = await m(['f2']);
 		const infoFile = fs.readFileSync(files[0].info, 'utf8');
 
 		t.is(infoFile.trim().indexOf(info.trim()), 0);
@@ -94,7 +94,7 @@ if (process.platform === 'linux') {
 		fs.writeFileSync('f3', '');
 
 		const statSrc = fs.statSync('f3');
-		const files = await fn(['f3']);
+		const files = await m(['f3']);
 		const statDest = fs.statSync(files[0].path);
 
 		t.is(statSrc.mode, statDest.mode);
