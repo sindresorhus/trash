@@ -3,6 +3,11 @@ var path = require('path');
 var pathExists = require('path-exists');
 var globby = require('globby');
 
+// platform handlers
+var macos = require('./lib/macos');
+var win = require('./lib/win');
+var linux = require('./lib/linux');
+
 module.exports = function (paths) {
 	if (!Array.isArray(paths)) {
 		return Promise.reject(new TypeError('Expected an array'));
@@ -19,8 +24,8 @@ module.exports = function (paths) {
 	}
 
 	switch (process.platform) {
-		case 'darwin': return require('./lib/macos')(paths);
-		case 'win32': return require('./lib/win')(paths);
-		default: return require('./lib/linux')(paths);
+		case 'darwin': return macos(paths);
+		case 'win32': return win(paths);
+		default: return linux(paths);
 	}
 };
