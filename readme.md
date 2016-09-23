@@ -26,7 +26,17 @@ trash(['*.png', '!rainbow.png']).then(() => {
 });
 ```
 
-*You can use [glob patterns](https://github.com/sindresorhus/globby#globbing-patterns).*
+## API
+
+### trash(input)
+
+Returns a `Promise`.
+
+#### input
+
+Type: `Iterable<string>`
+
+Accepts paths and [glob patterns](https://github.com/sindresorhus/globby#globbing-patterns).
 
 
 ## CLI

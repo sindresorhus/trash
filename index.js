@@ -1,20 +1,14 @@
 'use strict';
-var path = require('path');
-var pathExists = require('path-exists');
-var globby = require('globby');
-var macos = require('./lib/macos');
-var linux = require('./lib/linux');
-var win = require('./lib/win');
+const path = require('path');
+const pathExists = require('path-exists');
+const globby = require('globby');
+const macos = require('./lib/macos');
+const linux = require('./lib/linux');
+const win = require('./lib/win');
 
-module.exports = function (paths) {
-	if (!Array.isArray(paths)) {
-		return Promise.reject(new TypeError('Expected an array'));
-	}
-
-	paths = globby.sync(paths.map(String), {nonull: true})
-		.map(function (x) {
-			return path.resolve(x);
-		})
+module.exports = iterable => {
+	const paths = globby.sync(Array.from(iterable).map(String), {nonull: true})
+		.map(x => path.resolve(x))
 		.filter(pathExists.sync);
 
 	if (paths.length === 0) {

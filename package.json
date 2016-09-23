@@ -10,7 +10,7 @@
     "url": "sindresorhus.com"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
     "test": "xo && ava"
@@ -40,12 +40,11 @@
   ],
   "dependencies": {
     "escape-string-applescript": "^1.0.0",
-    "fs-extra": "^0.26.2",
-    "globby": "^4.0.0",
-    "path-exists": "^2.0.0",
+    "fs-extra": "^0.30.0",
+    "globby": "^6.0.0",
+    "path-exists": "^3.0.0",
     "pify": "^2.3.0",
-    "pinkie-promise": "^2.0.0",
-    "run-applescript": "^2.0.0",
+    "run-applescript": "^3.0.0",
     "uuid": "^2.0.1",
     "xdg-trashdir": "^2.0.0"
   },
@@ -53,5 +52,8 @@
     "ava": "*",
     "tempfile": "^1.1.1",
     "xo": "*"
+  },
+  "xo": {
+    "esnext": true
   }
 }
