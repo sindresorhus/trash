@@ -48,6 +48,23 @@ test('glob', async t => {
 	t.true(pathExists.sync('fixture.png'));
 });
 
+test('string pattern', async t => {
+	fs.writeFileSync('a', '');
+	fs.writeFileSync('b', '');
+	fs.writeFileSync('ab', '');
+	t.true(pathExists.sync('a'));
+	t.true(pathExists.sync('b'));
+	t.true(pathExists.sync('ab'));
+
+	await m(
+		'ab'
+	);
+
+	t.false(pathExists.sync('ab'));
+	t.true(pathExists.sync('a'));
+	t.true(pathExists.sync('b'));
+});
+
 test('directories', async t => {
 	const d1f1 = path.join('fdir', 'fixture');
 	const d1f2 = path.join('fdir', 'fixture2');
