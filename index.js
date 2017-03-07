@@ -7,6 +7,7 @@ const linux = require('./lib/linux');
 const win = require('./lib/win');
 
 module.exports = iterable => {
+	iterable = typeof iterable === 'string' ? [iterable] : iterable;
 	const paths = globby.sync(Array.from(iterable).map(String), {nonull: true})
 		.map(x => path.resolve(x))
 		.filter(pathExists.sync);
