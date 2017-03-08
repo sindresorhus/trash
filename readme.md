@@ -16,6 +16,15 @@ $ npm install --save trash
 ```
 
 
+## CLI
+
+To install the command `trash`, run:
+
+```
+$ npm install --global trash-cli
+```
+
+
 ## Usage
 
 ```js
