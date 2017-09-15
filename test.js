@@ -48,6 +48,16 @@ test('glob', async t => {
 	t.true(pathExists.sync('fixture.png'));
 });
 
+test('no glob', async t => {
+	fs.writeFileSync('fixture-noglob*.js', '');
+	fs.writeFileSync('fixture-noglob1.js', '');
+
+	await m(['fixture-noglob*.js'], {glob: false});
+
+	t.false(pathExists.sync('fixture-noglob*.js'));
+	t.true(pathExists.sync('fixture-noglob1.js'));
+});
+
 test('string pattern', async t => {
 	fs.writeFileSync('a', '');
 	fs.writeFileSync('b', '');
