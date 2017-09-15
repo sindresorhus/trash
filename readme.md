@@ -46,7 +46,7 @@ Accepts paths and [glob patterns](https://github.com/sindresorhus/globby#globbin
 Type: `boolean`<br>
 Default: `true`
 
-Flag to disable globbing.
+Whether to enable globbing when matching file paths.
 
 ## CLI
 
