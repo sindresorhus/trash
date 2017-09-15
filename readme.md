@@ -26,9 +26,10 @@ trash(['*.png', '!rainbow.png']).then(() => {
 });
 ```
 
+
 ## API
 
-### trash(input)
+### trash(input, [options])
 
 Returns a `Promise`.
 
@@ -38,6 +39,14 @@ Type: `Iterable<string>`
 
 Accepts paths and [glob patterns](https://github.com/sindresorhus/globby#globbing-patterns).
 
+#### options
+
+##### glob
+
+Type: `boolean`<br>
+Default: `true`
+
+Whether to enable globbing when matching file paths.
 
 ## CLI
 
