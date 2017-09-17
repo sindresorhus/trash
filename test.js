@@ -3,7 +3,7 @@ import path from 'path';
 import pathExists from 'path-exists';
 import test from 'ava';
 import tempfile from 'tempfile';
-import m from './';
+import m from '.';
 
 const tmpdir = tempfile();
 fs.mkdirSync(tmpdir);

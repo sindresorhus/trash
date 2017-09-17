@@ -12,7 +12,7 @@ In contrast to [`fs.unlink`](https://nodejs.org/api/fs.html#fs_fs_unlink_path_ca
 ## Install
 
 ```
-$ npm install --save trash
+$ npm install trash
 ```
 
 
@@ -41,12 +41,15 @@ Accepts paths and [glob patterns](https://github.com/sindresorhus/globby#globbin
 
 #### options
 
+Type: `Object`
+
 ##### glob
 
 Type: `boolean`<br>
 Default: `true`
 
-Whether to enable globbing when matching file paths.
+Enable globbing when matching file paths.
+
 
 ## CLI
 

@@ -1,56 +1,56 @@
 {
-  "name": "trash",
-  "version": "4.0.1",
-  "description": "Move files and folders to the trash",
-  "license": "MIT",
-  "repository": "sindresorhus/trash",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava"
-  },
-  "files": [
-    "index.js",
-    "lib"
-  ],
-  "keywords": [
-    "trash",
-    "recycle",
-    "bin",
-    "rm",
-    "rmrf",
-    "rimraf",
-    "remove",
-    "delete",
-    "del",
-    "file",
-    "files",
-    "dir",
-    "directory",
-    "directories",
-    "folder",
-    "folders",
-    "xdg"
-  ],
-  "dependencies": {
-    "escape-string-applescript": "^1.0.0",
-    "fs-extra": "^0.30.0",
-    "globby": "^6.0.0",
-    "path-exists": "^3.0.0",
-    "pify": "^2.3.0",
-    "run-applescript": "^3.0.0",
-    "uuid": "^2.0.1",
-    "xdg-trashdir": "^2.0.0"
-  },
-  "devDependencies": {
-    "ava": "*",
-    "tempfile": "^1.1.1",
-    "xo": "*"
-  }
+	"name": "trash",
+	"version": "4.0.1",
+	"description": "Move files and folders to the trash",
+	"license": "MIT",
+	"repository": "sindresorhus/trash",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js",
+		"lib"
+	],
+	"keywords": [
+		"trash",
+		"recycle",
+		"bin",
+		"rm",
+		"rmrf",
+		"rimraf",
+		"remove",
+		"delete",
+		"del",
+		"file",
+		"files",
+		"dir",
+		"directory",
+		"directories",
+		"folder",
+		"folders",
+		"xdg"
+	],
+	"dependencies": {
+		"escape-string-applescript": "^1.0.0",
+		"fs-extra": "^0.30.0",
+		"globby": "^6.0.0",
+		"path-exists": "^3.0.0",
+		"pify": "^2.3.0",
+		"run-applescript": "^3.0.0",
+		"uuid": "^2.0.1",
+		"xdg-trashdir": "^2.0.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"tempfile": "^2.0.0",
+		"xo": "*"
+	}
 }
