@@ -1,6 +1,6 @@
 'use strict';
+const fs = require('fs');
 const path = require('path');
-const pathExists = require('path-exists');
 const globby = require('globby');
 const macos = require('./lib/macos');
 const linux = require('./lib/linux');
@@ -12,7 +12,7 @@ module.exports = (iterable, opts) => {
 
 	const paths = (opts.glob === false ? iterable : globby.sync(iterable, {nonull: true}))
 		.map(x => path.resolve(x))
-		.filter(pathExists.sync);
+		.filter(fs.existsSync);
 
 	if (paths.length === 0) {
 		return Promise.resolve();
