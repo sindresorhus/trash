@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import pathExists from 'path-exists';
 import test from 'ava';
 import tempfile from 'tempfile';
 import m from '.';
@@ -16,10 +15,10 @@ test('files', async t => {
 	fs.writeFileSync('fixture2', '');
 	fs.writeFileSync(weirdName, '');
 	fs.writeFileSync('123', '');
-	t.true(pathExists.sync('fixture'));
-	t.true(pathExists.sync('fixture2'));
-	t.true(pathExists.sync(weirdName));
-	t.true(pathExists.sync('123'));
+	t.true(fs.existsSync('fixture'));
+	t.true(fs.existsSync('fixture2'));
+	t.true(fs.existsSync(weirdName));
+	t.true(fs.existsSync('123'));
 
 	await m([
 		'fixture',
@@ -28,24 +27,24 @@ test('files', async t => {
 		123
 	]);
 
-	t.false(pathExists.sync('fixture'));
-	t.false(pathExists.sync('fixture2'));
-	t.false(pathExists.sync(weirdName));
-	t.false(pathExists.sync('123'));
+	t.false(fs.existsSync('fixture'));
+	t.false(fs.existsSync('fixture2'));
+	t.false(fs.existsSync(weirdName));
+	t.false(fs.existsSync('123'));
 });
 
 test('glob', async t => {
 	fs.writeFileSync('fixture.jpg', '');
 	fs.writeFileSync('fixture.png', '');
-	t.true(pathExists.sync('fixture.jpg'));
-	t.true(pathExists.sync('fixture.png'));
+	t.true(fs.existsSync('fixture.jpg'));
+	t.true(fs.existsSync('fixture.png'));
 
 	await m([
 		'*.jpg'
 	]);
 
-	t.false(pathExists.sync('fixture.jpg'));
-	t.true(pathExists.sync('fixture.png'));
+	t.false(fs.existsSync('fixture.jpg'));
+	t.true(fs.existsSync('fixture.png'));
 });
 
 test('no glob', async t => {
@@ -54,25 +53,25 @@ test('no glob', async t => {
 
 	await m(['fixture-noglob*.js'], {glob: false});
 
-	t.false(pathExists.sync('fixture-noglob*.js'));
-	t.true(pathExists.sync('fixture-noglob1.js'));
+	t.false(fs.existsSync('fixture-noglob*.js'));
+	t.true(fs.existsSync('fixture-noglob1.js'));
 });
 
 test('string pattern', async t => {
 	fs.writeFileSync('a', '');
 	fs.writeFileSync('b', '');
 	fs.writeFileSync('ab', '');
-	t.true(pathExists.sync('a'));
-	t.true(pathExists.sync('b'));
-	t.true(pathExists.sync('ab'));
+	t.true(fs.existsSync('a'));
+	t.true(fs.existsSync('b'));
+	t.true(fs.existsSync('ab'));
 
 	await m(
 		'ab'
 	);
 
-	t.false(pathExists.sync('ab'));
-	t.true(pathExists.sync('a'));
-	t.true(pathExists.sync('b'));
+	t.false(fs.existsSync('ab'));
+	t.true(fs.existsSync('a'));
+	t.true(fs.existsSync('b'));
 });
 
 test('directories', async t => {
@@ -84,22 +83,22 @@ test('directories', async t => {
 	fs.mkdirSync('fdir');
 	fs.writeFileSync(d1f1, '');
 	fs.writeFileSync(d1f2, '');
-	t.true(pathExists.sync(d1f1));
-	t.true(pathExists.sync(d1f2));
+	t.true(fs.existsSync(d1f1));
+	t.true(fs.existsSync(d1f2));
 
 	fs.mkdirSync('321');
 	fs.writeFileSync(d2f1, '');
 	fs.writeFileSync(d2f2, '');
-	t.true(pathExists.sync(d2f1));
-	t.true(pathExists.sync(d2f2));
+	t.true(fs.existsSync(d2f1));
+	t.true(fs.existsSync(d2f2));
 
 	await m([
 		'fdir',
 		321
 	]);
 
-	t.false(pathExists.sync('fdir'));
-	t.false(pathExists.sync(321));
+	t.false(fs.existsSync('fdir'));
+	t.false(fs.existsSync(321));
 });
 
 if (process.platform === 'linux') {
