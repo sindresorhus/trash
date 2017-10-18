@@ -101,6 +101,25 @@ test('directories', async t => {
 	t.false(fs.existsSync(321));
 });
 
+test('symlinks', async t => {
+	fs.writeFileSync('aaa', '');
+	fs.symlinkSync('aaa', 'bbb');
+	fs.symlinkSync('ddd', 'ccc');
+
+	t.truthy(fs.lstatSync('aaa'));
+	t.truthy(fs.lstatSync('bbb'));
+	t.truthy(fs.lstatSync('ccc'));
+
+	await m([
+		'bbb',
+		'ccc'
+	]);
+
+	t.truthy(fs.lstatSync('aaa'));
+	t.throws(() => fs.lstatSync('bbb'));
+	t.throws(() => fs.lstatSync('ccc'));
+});
+
 if (process.platform === 'linux') {
 	test('create trashinfo', async t => {
 		t.plan(1);
