@@ -101,6 +101,20 @@ test('directories', async t => {
 	t.false(fs.existsSync(321));
 });
 
+test('tons of files', async t => {
+	const paths = [];
+	for (let i = 0; i < 10000; i++) {
+		paths.push('file' + i);
+		fs.writeFileSync('file' + i, '');
+	}
+
+	await m(paths);
+
+	for (let i = 0; i < 10000; i++) {
+		t.false(fs.existsSync('file' + i));
+	}
+});
+
 if (process.platform === 'linux') {
 	test('create trashinfo', async t => {
 		t.plan(1);
