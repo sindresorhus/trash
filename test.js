@@ -102,16 +102,16 @@ test('directories', async t => {
 });
 
 test('tons of files', async t => {
-	const nFiles = 5000;
+	const FILE_COUNT = 5000;
 	const paths = [];
-	for (let i = 0; i < nFiles; i++) {
+	for (let i = 0; i < FILE_COUNT; i++) {
 		paths.push('file' + i);
 		fs.writeFileSync('file' + i, '');
 	}
 
 	await t.notThrows(m(paths));
 
-	for (let i = 0; i < nFiles; i++) {
+	for (let i = 0; i < FILE_COUNT; i++) {
 		t.false(fs.existsSync('file' + i));
 	}
 });
