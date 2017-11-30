@@ -12,7 +12,7 @@ module.exports = (iterable, opts) => {
 
 	const paths = (opts.glob === false ? iterable : globby.sync(iterable, {nonull: true}))
 		.map(x => path.resolve(x))
-		.filter(fs.existsSync);
+		.filter(fs.lstatSync);
 
 	if (paths.length === 0) {
 		return Promise.resolve();
