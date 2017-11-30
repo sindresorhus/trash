@@ -10,7 +10,11 @@ module.exports = (iterable, opts) => {
 	iterable = Array.from(typeof iterable === 'string' ? [iterable] : iterable).map(String);
 	opts = Object.assign({glob: true}, opts);
 
-	const paths = (opts.glob === false ? iterable : globby.sync(iterable, {nonull: true}))
+	const paths = (opts.glob === false ? iterable : globby.sync(iterable, {
+		expandDirectories: false,
+		nodir: false,
+		nonull: true
+	}))
 		.map(x => path.resolve(x))
 		.filter(fs.lstatSync);
 
