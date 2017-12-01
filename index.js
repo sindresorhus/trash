@@ -16,7 +16,17 @@ module.exports = (iterable, opts) => {
 		nonull: true
 	}))
 		.map(x => path.resolve(x))
-		.filter(fs.lstatSync);
+		.filter(x => {
+			try {
+				return fs.lstatSync(x);
+			} catch (err) {
+				if (err.code === 'ENOENT') {
+					return false;
+				}
+
+				return Promise.reject(err);
+			}
+		});
 
 	if (paths.length === 0) {
 		return Promise.resolve();
