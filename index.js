@@ -2,11 +2,12 @@
 const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
+const pTry = require('p-try');
 const macos = require('./lib/macos');
 const linux = require('./lib/linux');
 const win = require('./lib/win');
 
-module.exports = (iterable, opts) => {
+module.exports = (iterable, opts) => pTry(() => {
 	iterable = Array.from(typeof iterable === 'string' ? [iterable] : iterable).map(String);
 	opts = Object.assign({glob: true}, opts);
 
@@ -24,12 +25,12 @@ module.exports = (iterable, opts) => {
 					return false;
 				}
 
-				return Promise.reject(err);
+				throw err;
 			}
 		});
 
 	if (paths.length === 0) {
-		return Promise.resolve();
+		return;
 	}
 
 	switch (process.platform) {
@@ -37,4 +38,4 @@ module.exports = (iterable, opts) => {
 		case 'win32': return win(paths);
 		default: return linux(paths);
 	}
-};
+});
