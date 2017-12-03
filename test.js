@@ -148,3 +148,8 @@ if (process.platform === 'linux') {
 		t.is(statSrc.size, statDest.size);
 	});
 }
+
+test('non existing files', async t => {
+	t.false(fs.existsSync('fixture-enoent'));
+	await t.notThrows(m('fixture-enoent'));
+});
