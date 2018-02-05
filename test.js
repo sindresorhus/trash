@@ -116,6 +116,25 @@ test('tons of files', async t => {
 	}
 });
 
+test('symlinks', async t => {
+	fs.writeFileSync('aaa', '');
+	fs.symlinkSync('aaa', 'bbb');
+	fs.symlinkSync('ddd', 'ccc');
+
+	t.truthy(fs.lstatSync('aaa'));
+	t.truthy(fs.lstatSync('bbb'));
+	t.truthy(fs.lstatSync('ccc'));
+
+	await m([
+		'bbb',
+		'ccc'
+	]);
+
+	t.truthy(fs.lstatSync('aaa'));
+	t.throws(() => fs.lstatSync('bbb'));
+	t.throws(() => fs.lstatSync('ccc'));
+});
+
 if (process.platform === 'linux') {
 	test('create trashinfo', async t => {
 		t.plan(1);
@@ -144,3 +163,8 @@ if (process.platform === 'linux') {
 		t.is(statSrc.size, statDest.size);
 	});
 }
+
+test('non-existent files', async t => {
+	t.false(fs.existsSync('fixture-enoent'));
+	await t.notThrows(m('fixture-enoent'));
+});

@@ -2,20 +2,35 @@
 const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
+const pTry = require('p-try');
 const macos = require('./lib/macos');
 const linux = require('./lib/linux');
 const win = require('./lib/win');
 
-module.exports = (iterable, opts) => {
+module.exports = (iterable, opts) => pTry(() => {
 	iterable = Array.from(typeof iterable === 'string' ? [iterable] : iterable).map(String);
 	opts = Object.assign({glob: true}, opts);
 
-	const paths = (opts.glob === false ? iterable : globby.sync(iterable, {nonull: true}))
+	const paths = (opts.glob === false ? iterable : globby.sync(iterable, {
+		expandDirectories: false,
+		nodir: false,
+		nonull: true
+	}))
 		.map(x => path.resolve(x))
-		.filter(fs.existsSync);
+		.filter(x => {
+			try {
+				return fs.lstatSync(x);
+			} catch (err) {
+				if (err.code === 'ENOENT') {
+					return false;
+				}
+
+				throw err;
+			}
+		});
 
 	if (paths.length === 0) {
-		return Promise.resolve();
+		return;
 	}
 
 	switch (process.platform) {
@@ -23,4 +38,4 @@ module.exports = (iterable, opts) => {
 		case 'win32': return win(paths);
 		default: return linux(paths);
 	}
-};
+});
