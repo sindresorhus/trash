@@ -34,8 +34,8 @@ module.exports = (iterable, opts) => pTry(() => {
 	}
 
 	switch (process.platform) {
-		case 'darwin': return macos(paths);
-		case 'win32': return win(paths);
-		default: return linux(paths);
+		case 'darwin': return macos(paths, opts.binDir);
+		case 'win32': return win(paths, opts.binDir);
+		default: return linux(paths, opts.binDir);
 	}
 });
