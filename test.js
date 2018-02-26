@@ -101,7 +101,7 @@ test('directories', async t => {
 	t.false(fs.existsSync(321));
 });
 
-test('tons of files', async t => {
+(process.platform === 'linux' ? test : test.failing)('tons of files', async t => {
 	const FILE_COUNT = 5000;
 	const paths = [];
 	for (let i = 0; i < FILE_COUNT; i++) {
