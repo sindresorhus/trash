@@ -101,6 +101,21 @@ test('directories', async t => {
 	t.false(fs.existsSync(321));
 });
 
+(process.platform === 'linux' ? test : test.failing)('tons of files', async t => {
+	const FILE_COUNT = 5000;
+	const paths = [];
+	for (let i = 0; i < FILE_COUNT; i++) {
+		paths.push('file' + i);
+		fs.writeFileSync('file' + i, '');
+	}
+
+	await t.notThrows(m(paths));
+
+	for (let i = 0; i < FILE_COUNT; i++) {
+		t.false(fs.existsSync('file' + i));
+	}
+});
+
 test('symlinks', async t => {
 	fs.writeFileSync('aaa', '');
 	fs.symlinkSync('aaa', 'bbb');
