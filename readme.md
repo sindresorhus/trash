@@ -1,4 +1,4 @@
-# ![trash](https://cdn.rawgit.com/sindresorhus/trash/1cdbd660976d739eeb45447bb6b62c41ac4a3ecf/media/logo.svg)
+# ![trash](media/logo.svg)
 
 > Move files and folders to the trash
 
