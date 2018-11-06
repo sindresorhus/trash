@@ -21,9 +21,9 @@ $ npm install trash
 ```js
 const trash = require('trash');
 
-trash(['*.png', '!rainbow.png']).then(() => {
-	console.log('done');
-});
+(async () => {
+	await trash(['*.png', '!rainbow.png']);
+})();
 ```
 
 

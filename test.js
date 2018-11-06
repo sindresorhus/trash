@@ -2,11 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import test from 'ava';
 import tempfile from 'tempfile';
-import m from '.';
+import trash from '.';
 
-const tmpdir = tempfile();
-fs.mkdirSync(tmpdir);
-process.chdir(tmpdir);
+const tempDirectory = tempfile();
+fs.mkdirSync(tempDirectory);
+process.chdir(tempDirectory);
 
 test('files', async t => {
 	const weirdName = process.platform === 'darwin' ? 'weird\\\\name\\"\'' : 'fixture3';
@@ -20,7 +20,7 @@ test('files', async t => {
 	t.true(fs.existsSync(weirdName));
 	t.true(fs.existsSync('123'));
 
-	await m([
+	await trash([
 		'fixture',
 		'fixture2',
 		weirdName,
@@ -39,7 +39,7 @@ test('glob', async t => {
 	t.true(fs.existsSync('fixture.jpg'));
 	t.true(fs.existsSync('fixture.png'));
 
-	await m([
+	await trash([
 		'*.jpg'
 	]);
 
@@ -51,7 +51,7 @@ test('no glob', async t => {
 	fs.writeFileSync('fixture-noglob*.js', '');
 	fs.writeFileSync('fixture-noglob1.js', '');
 
-	await m(['fixture-noglob*.js'], {glob: false});
+	await trash(['fixture-noglob*.js'], {glob: false});
 
 	t.false(fs.existsSync('fixture-noglob*.js'));
 	t.true(fs.existsSync('fixture-noglob1.js'));
@@ -65,9 +65,7 @@ test('string pattern', async t => {
 	t.true(fs.existsSync('b'));
 	t.true(fs.existsSync('ab'));
 
-	await m(
-		'ab'
-	);
+	await trash('ab');
 
 	t.false(fs.existsSync('ab'));
 	t.true(fs.existsSync('a'));
@@ -92,7 +90,7 @@ test('directories', async t => {
 	t.true(fs.existsSync(d2f1));
 	t.true(fs.existsSync(d2f2));
 
-	await m([
+	await trash([
 		'fdir',
 		321
 	]);
@@ -109,7 +107,7 @@ test('directories', async t => {
 		fs.writeFileSync('file' + i, '');
 	}
 
-	await t.notThrows(m(paths));
+	await t.notThrowsAsync(trash(paths));
 
 	for (let i = 0; i < FILE_COUNT; i++) {
 		t.false(fs.existsSync('file' + i));
@@ -125,7 +123,7 @@ test('symlinks', async t => {
 	t.truthy(fs.lstatSync('bbb'));
 	t.truthy(fs.lstatSync('ccc'));
 
-	await m([
+	await trash([
 		'bbb',
 		'ccc'
 	]);
@@ -142,7 +140,7 @@ if (process.platform === 'linux') {
 		fs.writeFileSync('f2', '');
 
 		const info = `[Trash Info]\nPath=${path.resolve('f2')}`;
-		const files = await m(['f2']);
+		const files = await trash(['f2']);
 		const infoFile = fs.readFileSync(files[0].info, 'utf8');
 
 		t.is(infoFile.trim().indexOf(info.trim()), 0);
@@ -154,7 +152,7 @@ if (process.platform === 'linux') {
 		fs.writeFileSync('f3', '');
 
 		const statSrc = fs.statSync('f3');
-		const files = await m(['f3']);
+		const files = await trash(['f3']);
 		const statDest = fs.statSync(files[0].path);
 
 		t.is(statSrc.mode, statDest.mode);
@@ -166,5 +164,5 @@ if (process.platform === 'linux') {
 
 test('non-existent files', async t => {
 	t.false(fs.existsSync('fixture-enoent'));
-	await t.notThrows(m('fixture-enoent'));
+	await t.notThrowsAsync(trash('fixture-enoent'));
 });
