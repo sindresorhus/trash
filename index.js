@@ -7,8 +7,8 @@ const macos = require('./lib/macos');
 const linux = require('./lib/linux');
 const windows = require('./lib/windows');
 
-module.exports = (iterable, options) => pTry(() => {
-	iterable = [...(typeof iterable === 'string' ? [iterable] : iterable)].map(String);
+module.exports = (paths, options) => pTry(() => {
+	paths = (typeof paths === 'string' ? [paths] : paths).map(String);
 
 	options = {
 		glob: true,
@@ -16,11 +16,15 @@ module.exports = (iterable, options) => pTry(() => {
 	};
 
 	// TOOD: Upgrading to latest `globby` version is blocked by https://github.com/mrmlnc/fast-glob/issues/110
-	const paths = (options.glob === false ? iterable : globby.sync(iterable, {
-		expandDirectories: false,
-		nodir: false,
-		nonull: true
-	}))
+	if (options.glob) {
+		paths = globby.sync(paths, {
+			expandDirectories: false,
+			nodir: false,
+			nonull: true
+		});
+	}
+
+	paths = paths
 		.map(filePath => path.resolve(filePath))
 		.filter(filePath => {
 			try {
