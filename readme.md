@@ -2,7 +2,7 @@
 
 > Move files and folders to the trash
 
-[![Build Status](https://travis-ci.com/sindresorhus/trash.svg?branch=master)](https://travis-ci.com/sindresorhus/trash)
+[![Build Status](https://travis-ci.org/sindresorhus/trash.svg?branch=master)](https://travis-ci.org/sindresorhus/trash)
 
 Works on macOS, Linux, and Windows.
 
