@@ -25,6 +25,9 @@ module.exports = (paths, options) => pTry(() => {
 	}
 
 	paths = paths
+		.filter(filePath => !paths.some(
+			otherPath => filePath !== otherPath && path.dirname(filePath) === otherPath)
+		)
 		.map(filePath => path.resolve(filePath))
 		.filter(filePath => {
 			try {
@@ -36,8 +39,7 @@ module.exports = (paths, options) => pTry(() => {
 
 				throw error;
 			}
-		})
-		.sort((a, b) => b.split(path.sep).length - a.split(path.sep).length);
+		});
 
 	if (paths.length === 0) {
 		return;
