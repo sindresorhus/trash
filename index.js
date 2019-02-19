@@ -36,7 +36,8 @@ module.exports = (paths, options) => pTry(() => {
 
 				throw error;
 			}
-		});
+		})
+		.sort((a, b) => b.split(path.sep).length - a.split(path.sep).length);
 
 	if (paths.length === 0) {
 		return;
