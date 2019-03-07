@@ -13,10 +13,11 @@
 		"node": ">=8"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"test": "xo && ava && tsd-check"
 	},
 	"files": [
 		"index.js",
+		"index.d.ts",
 		"lib"
 	],
 	"keywords": [
@@ -52,6 +53,7 @@
 	"devDependencies": {
 		"ava": "^1.0.0-rc.1",
 		"tempfile": "^2.0.0",
-		"xo": "^0.23.0"
+		"tsd-check": "^0.3.0",
+		"xo": "^0.24.0"
 	}
 }

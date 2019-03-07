@@ -7,7 +7,7 @@ const macos = require('./lib/macos');
 const linux = require('./lib/linux');
 const windows = require('./lib/windows');
 
-module.exports = (paths, options) => pTry(() => {
+const trash = (paths, options) => pTry(() => {
 	paths = (typeof paths === 'string' ? [paths] : paths).map(String);
 
 	options = {
@@ -51,3 +51,6 @@ module.exports = (paths, options) => pTry(() => {
 			return linux(paths);
 	}
 });
+
+module.exports = trash;
+module.exports.default = trash;
