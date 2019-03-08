@@ -51,6 +51,7 @@ test('no glob', async t => {
 	if (process.platform !== 'win32') {
 		fs.writeFileSync('fixture-noglob*.js', '');
 	}
+
 	fs.writeFileSync('fixture-noglob1.js', '');
 
 	await trash(['fixture-noglob*.js'], {glob: false});
