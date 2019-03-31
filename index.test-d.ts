@@ -1,5 +1,5 @@
-import {expectType} from 'tsd-check';
-import trash from '.';
+import {expectType} from 'tsd';
+import trash = require('.');
 
 expectType<Promise<void>>(trash('/path/to/item1'));
 expectType<Promise<void>>(trash(['/path/to/item1', '/path/to/item2']));
