@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
 const pTry = require('p-try');
+const isPathInside = require('is-path-inside');
 const macos = require('./lib/macos');
 const linux = require('./lib/linux');
 const windows = require('./lib/windows');
@@ -24,22 +25,22 @@ module.exports = (paths, options) => pTry(() => {
 		});
 	}
 
-	paths = paths
-		.filter(filePath => !paths.some(
-			otherPath => filePath !== otherPath && path.dirname(filePath) === otherPath)
-		)
-		.map(filePath => path.resolve(filePath))
-		.filter(filePath => {
-			try {
-				return fs.lstatSync(filePath);
-			} catch (error) {
-				if (error.code === 'ENOENT') {
-					return false;
-				}
+	paths = paths.map(filePath => path.resolve(filePath));
+	paths = paths.filter(filePath => {
+		if (paths.some(otherPath => isPathInside(filePath, otherPath))) {
+			return false;
+		}
 
-				throw error;
+		try {
+			return fs.lstatSync(filePath);
+		} catch (error) {
+			if (error.code === 'ENOENT') {
+				return false;
 			}
-		});
+
+			throw error;
+		}
+	});
 
 	if (paths.length === 0) {
 		return;
