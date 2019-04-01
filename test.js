@@ -169,3 +169,31 @@ test('non-existent files', async t => {
 	t.false(fs.existsSync('fixture-enoent'));
 	await t.notThrowsAsync(trash('fixture-enoent'));
 });
+
+test('glob with nested directories', async t => {
+	const dir1 = 'foo';
+	const file1 = path.join('foo', 'bar.txt');
+	const file2 = path.join('foo', 'baz.txt');
+	const dir2 = path.join('foo', 'bar');
+	const dir3 = path.join('foo', 'baz');
+	const file3 = path.join(dir1, 'foo.txt');
+	const file4 = path.join(dir2, 'bar.txt');
+
+	fs.mkdirSync(dir1);
+	fs.mkdirSync(dir2);
+	fs.mkdirSync(dir3);
+	fs.writeFileSync(file1, '');
+	fs.writeFileSync(file2, '');
+	fs.writeFileSync(file3, '');
+	fs.writeFileSync(file4, '');
+	t.true(fs.existsSync(file1));
+	t.true(fs.existsSync(file2));
+	t.true(fs.existsSync(file3));
+	t.true(fs.existsSync(file4));
+
+	await trash(`${dir1}/**`, {glob: true});
+
+	t.false(fs.existsSync(dir1));
+	t.false(fs.existsSync(dir2));
+	t.false(fs.existsSync(dir3));
+});
