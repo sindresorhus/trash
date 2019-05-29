@@ -32,7 +32,6 @@
 		"del",
 		"file",
 		"files",
-		"dir",
 		"directory",
 		"directories",
 		"folder",
@@ -40,21 +39,19 @@
 		"xdg"
 	],
 	"dependencies": {
-		"escape-string-applescript": "^2.0.0",
 		"globby": "^7.1.1",
 		"is-path-inside": "^2.0.0",
 		"make-dir": "^3.0.0",
 		"move-file": "^1.1.0",
 		"p-map": "^2.0.0",
 		"p-try": "^2.2.0",
-		"run-applescript": "^3.2.0",
 		"uuid": "^3.3.2",
 		"xdg-trashdir": "^2.1.1"
 	},
 	"devDependencies": {
 		"ava": "^1.4.1",
 		"tempfile": "^3.0.0",
-		"tsd": "^0.7.1",
+		"tsd": "^0.7.3",
 		"xo": "^0.24.0"
 	}
 }
