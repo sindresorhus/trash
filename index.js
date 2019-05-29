@@ -57,5 +57,3 @@ const trash = (paths, options) => pTry(() => {
 });
 
 module.exports = trash;
-// TODO: Remove this for the next major release
-module.exports.default = trash;
