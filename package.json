@@ -39,6 +39,7 @@
 		"xdg"
 	],
 	"dependencies": {
+		"@stroncium/procfs": "^1.0.0",
 		"globby": "^7.1.1",
 		"is-path-inside": "^2.0.0",
 		"make-dir": "^3.0.0",
