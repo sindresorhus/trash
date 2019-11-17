@@ -1,6 +1,6 @@
 {
 	"name": "trash",
-	"version": "6.0.0",
+	"version": "6.1.0",
 	"description": "Move files and folders to the trash",
 	"license": "MIT",
 	"repository": "sindresorhus/trash",
