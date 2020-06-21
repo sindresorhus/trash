@@ -16,7 +16,7 @@ const trash = (paths, options) => pTry(() => {
 		...options
 	};
 
-	// TOOD: Upgrading to latest `globby` version is blocked by https://github.com/mrmlnc/fast-glob/issues/110
+	// TODO: Upgrading to latest `globby` version is blocked by https://github.com/mrmlnc/fast-glob/issues/110
 	if (options.glob) {
 		paths = globby.sync(paths, {
 			expandDirectories: false,
