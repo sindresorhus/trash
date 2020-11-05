@@ -6,6 +6,8 @@
 
 Works on macOS (10.12+), Linux, and Windows (8+).
 
+**Note:** The Linux implementation is not very good and not maintained. Help welcome. If no one steps up to help maintain it, I will eventually remove Linux support.
+
 In contrast to [`fs.unlink`](https://nodejs.org/api/fs.html#fs_fs_unlink_path_callback), [`del`](https://github.com/sindresorhus/del), and [`rimraf`](https://github.com/isaacs/rimraf) which permanently delete files, this only moves them to the trash, which is much safer and reversible.
 
 
