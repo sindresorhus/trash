@@ -4,13 +4,14 @@
 	"description": "Move files and folders to the trash",
 	"license": "MIT",
 	"repository": "sindresorhus/trash",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"engines": {
-		"node": ">=8"
+		"node": ">=10"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -39,20 +40,20 @@
 		"xdg"
 	],
 	"dependencies": {
-		"@stroncium/procfs": "^1.0.0",
+		"@stroncium/procfs": "^1.2.1",
 		"globby": "^7.1.1",
 		"is-path-inside": "^3.0.2",
-		"make-dir": "^3.0.0",
-		"move-file": "^1.1.0",
-		"p-map": "^3.0.0",
+		"make-dir": "^3.1.0",
+		"move-file": "^2.0.0",
+		"p-map": "^4.0.0",
 		"p-try": "^2.2.0",
-		"uuid": "^3.3.2",
-		"xdg-trashdir": "^2.1.1"
+		"uuid": "^8.3.1",
+		"xdg-trashdir": "^3.1.0"
 	},
 	"devDependencies": {
 		"ava": "^2.4.0",
 		"tempfile": "^3.0.0",
-		"tsd": "^0.11.0",
-		"xo": "^0.25.3"
+		"tsd": "^0.13.1",
+		"xo": "^0.35.0"
 	}
 }

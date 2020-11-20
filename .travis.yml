@@ -4,6 +4,6 @@ os:
   - windows
 language: node_js
 node_js:
-  - '11'
+  - '14'
+  - '12'
   - '10'
-  - '8'

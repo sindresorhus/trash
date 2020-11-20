@@ -4,9 +4,9 @@ import test from 'ava';
 import tempfile from 'tempfile';
 import trash from '.';
 
-const tempDirectory = tempfile();
-fs.mkdirSync(tempDirectory);
-process.chdir(tempDirectory);
+const temporaryDirectory = tempfile();
+fs.mkdirSync(temporaryDirectory);
+process.chdir(temporaryDirectory);
 
 test('files', async t => {
 	const weirdName = process.platform === 'darwin' ? 'weird\\\\name\\"\'' : 'fixture3';

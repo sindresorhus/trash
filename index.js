@@ -9,7 +9,7 @@ const linux = require('./lib/linux');
 const windows = require('./lib/windows');
 
 const trash = (paths, options) => pTry(() => {
-	paths = (typeof paths === 'string' ? [paths] : paths).map(String);
+	paths = (typeof paths === 'string' ? [paths] : paths).map(path => String(path));
 
 	options = {
 		glob: true,
@@ -26,6 +26,7 @@ const trash = (paths, options) => pTry(() => {
 	}
 
 	paths = paths.map(filePath => path.resolve(filePath));
+
 	paths = paths.filter(filePath => {
 		if (paths.some(otherPath => isPathInside(filePath, otherPath))) {
 			return false;
