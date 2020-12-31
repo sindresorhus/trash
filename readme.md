@@ -2,8 +2,6 @@
 
 > Move files and folders to the trash
 
-[![Build Status](https://travis-ci.com/sindresorhus/trash.svg?branch=master)](https://travis-ci.com/github/sindresorhus/trash)
-
 Works on macOS (10.12+), Linux, and Windows (8+).
 
 **Note:** The Linux implementation is not very good and not maintained. Help welcome. If no one steps up to help maintain it, I will eventually remove Linux support.
