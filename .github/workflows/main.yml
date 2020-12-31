@@ -4,7 +4,7 @@ on:
   - pull_request
 jobs:
   test:
-    name: Node.js ${{ matrix.node-version }}
+    name: Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
