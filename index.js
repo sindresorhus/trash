@@ -2,10 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
-const pTry = require('p-try');
 const isPathInside = require('is-path-inside');
 
-const trash = (paths, options) => pTry(() => {
+const trash = async (paths, options) => {
 	paths = (typeof paths === 'string' ? [paths] : paths).map(path => String(path));
 
 	options = {
@@ -54,6 +53,6 @@ const trash = (paths, options) => pTry(() => {
 	}
 
 	return trash(paths);
-});
+};
 
 module.exports = trash;
