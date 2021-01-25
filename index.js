@@ -44,7 +44,6 @@ const trash = (paths, options) => pTry(() => {
 		return;
 	}
 
-
 	let trash;
 	if (process.platform === 'darwin') {
 		trash = require('./lib/macos');
