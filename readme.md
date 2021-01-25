@@ -58,14 +58,14 @@ $ npm install --global trash-cli
 ## Info
 
 On macOS, [`macos-trash`](https://github.com/sindresorhus/macos-trash) is used.\
-On Linux, the [XDG spec](http://standards.freedesktop.org/trash-spec/trashspec-1.0.html) is followed.\
+On Linux, the [XDG spec](https://standards.freedesktop.org/trash-spec/trashspec-1.0.html) is followed.\
 On Windows, [`recycle-bin`](https://github.com/sindresorhus/recycle-bin) is used.
 
 ## FAQ
 
 ### But I can do the same thing with `mv`
 
-Not really. The `mv` command isn't cross-platform and moving to trash is not just about moving the file to a "trash" directory. On all OSes you'll run into file conflicts. The user won't easily be able to restore the file. It won't work on an external drive. The trash directory location varies between Windows versions. For Linux, there's a whole [spec](http://www.ramendik.ru/docs/trashspec.html) you need to follow. On macOS, you'll lose the [Put back](http://mac-fusion.com/trash-tip-how-to-put-files-back-to-their-original-location/) feature.
+Not really. The `mv` command isn't cross-platform and moving to trash is not just about moving the file to a "trash" directory. On all OSes you'll run into file conflicts. The user won't easily be able to restore the file. It won't work on an external drive. The trash directory location varies between Windows versions. For Linux, there's a whole [spec](https://standards.freedesktop.org/trash-spec/trashspec-1.0.html) you need to follow. On macOS, you'll lose the [Put back](https://mac-fusion.com/trash-tip-how-to-put-files-back-to-their-original-location/) feature.
 
 ## Related
 
