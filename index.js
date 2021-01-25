@@ -2,7 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
-const pTry = require('p-try');
 const isPathInside = require('is-path-inside');
 const macos = require('./lib/macos');
 const linux = require('./lib/linux');
