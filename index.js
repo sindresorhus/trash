@@ -4,9 +4,6 @@ const path = require('path');
 const globby = require('globby');
 const pTry = require('p-try');
 const isPathInside = require('is-path-inside');
-const macos = require('./lib/macos');
-const linux = require('./lib/linux');
-const windows = require('./lib/windows');
 
 const trash = (paths, options) => pTry(() => {
 	paths = (typeof paths === 'string' ? [paths] : paths).map(path => String(path));
@@ -47,14 +44,16 @@ const trash = (paths, options) => pTry(() => {
 		return;
 	}
 
-	switch (process.platform) {
-		case 'darwin':
-			return macos(paths);
-		case 'win32':
-			return windows(paths);
-		default:
-			return linux(paths);
+	let trash;
+	if (process.platform === 'darwin') {
+		trash = require('./lib/macos');
+	} else if (process.platform === 'win32') {
+		trash = require('./lib/windows');
+	} else {
+		trash = require('./lib/linux');
 	}
+
+	return trash(paths);
 });
 
 module.exports = trash;
