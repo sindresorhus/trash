@@ -46,14 +46,14 @@ const trash = (paths, options) => pTry(() => {
 
 	switch (process.platform) {
 		case 'darwin':
-			const trash = require('./lib/macos');
-			return trash(paths);
+			const macos = require('./lib/macos');
+			return macos(paths);
 		case 'win32':
-			const trash = require('./lib/windows');
-			return trash(paths);
+			const windows = require('./lib/windows');
+			return windows(paths);
 		default:
-			const trash = require('./lib/linux');
-			return trash(paths);
+			const linux = require('./lib/linux');
+			return linux(paths);
 	}
 });
 
