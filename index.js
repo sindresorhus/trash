@@ -23,8 +23,8 @@ const trash = async (paths, options) => {
 			nonull: true
 		});
 	}
-	
-	paths = await Promise.all(paths.map(async filePath => {		
+
+	paths = await Promise.all(paths.map(async filePath => {
 		if (paths.some(otherPath => isPathInside(filePath, otherPath))) {
 			return;
 		}
@@ -41,7 +41,7 @@ const trash = async (paths, options) => {
 
 		return path.resolve(filePath);
 	}));
-	
+
 	paths = paths.filter(isPath => isPath);
 
 	if (paths.length === 0) {
