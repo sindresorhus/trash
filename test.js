@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import test from 'ava';
 import tempfile from 'tempfile';
-import trash from '.';
+import trash from './index.js';
 
 const temporaryDirectory = tempfile();
 fs.mkdirSync(temporaryDirectory);
