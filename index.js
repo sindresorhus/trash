@@ -44,17 +44,17 @@ const trash = (paths, options) => pTry(() => {
 		return;
 	}
 
-	switch (process.platform) {
-		case 'darwin':
-			const macos = require('./lib/macos');
-			return macos(paths);
-		case 'win32':
-			const windows = require('./lib/windows');
-			return windows(paths);
-		default:
-			const linux = require('./lib/linux');
-			return linux(paths);
+
+	let trash;
+	if (process.platform === 'darwin') {
+		trash = require('./lib/macos');
+	} else if (process.platform === 'win32') {
+		trash = require('./lib/windows');
+	} else {
+		trash = require('./lib/linux');
 	}
+
+	return trash(paths);
 });
 
 module.exports = trash;
