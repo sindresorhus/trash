@@ -14,30 +14,33 @@ const trash = async (paths, options) => {
 
 	// TODO: Upgrading to latest `globby` version is blocked by https://github.com/mrmlnc/fast-glob/issues/110
 	if (options.glob) {
-		paths = globby.sync(paths, {
+		paths = await globby(paths, {
 			expandDirectories: false,
 			nodir: false,
 			nonull: true
 		});
 	}
 
-	paths = paths.map(filePath => path.resolve(filePath));
-
-	paths = paths.filter(filePath => {
+	paths = await Promise.all(paths.map(async filePath => {
 		if (paths.some(otherPath => isPathInside(filePath, otherPath))) {
-			return false;
+			return;
 		}
 
 		try {
-			return fs.lstatSync(filePath);
+			// eslint-disable-next-line node/no-unsupported-features/node-builtins -- It's Node 10.1+
+			await fs.promises.lstat(filePath);
 		} catch (error) {
 			if (error.code === 'ENOENT') {
-				return false;
+				return;
 			}
 
 			throw error;
 		}
-	});
+
+		return path.resolve(filePath);
+	}));
+
+	paths = paths.filter(isPath => isPath);
 
 	if (paths.length === 0) {
 		return;
