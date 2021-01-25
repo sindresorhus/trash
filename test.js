@@ -110,7 +110,7 @@ test('tons of files', async t => {
 		fs.writeFileSync('file' + i, '');
 	}
 
-	await t.notThrowsAsync(trash(paths));
+	await trash(paths);
 
 	for (let i = 0; i < FILE_COUNT; i++) {
 		t.false(fs.existsSync('file' + i));
