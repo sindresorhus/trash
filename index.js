@@ -30,7 +30,7 @@ const trash = async (paths, options) => {
 		}
 
 		try {
-			await fs.promise.lstat(filePath);
+			await fs.promises.lstat(filePath);
 		} catch (error) {
 			if (error.code === 'ENOENT') {
 				return;
