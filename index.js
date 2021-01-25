@@ -30,6 +30,7 @@ const trash = async (paths, options) => {
 		}
 
 		try {
+			// eslint-disable-next-line node/no-unsupported-features/node-builtins -- It's Node 10.1+
 			await fs.promises.lstat(filePath);
 		} catch (error) {
 			if (error.code === 'ENOENT') {
