@@ -102,7 +102,7 @@ test('directories', async t => {
 	t.false(fs.existsSync(321));
 });
 
-(process.platform === 'linux' ? test : test.failing)('tons of files', async t => {
+test('tons of files', async t => {
 	const FILE_COUNT = 5000;
 	const paths = [];
 	for (let i = 0; i < FILE_COUNT; i++) {
@@ -110,7 +110,7 @@ test('directories', async t => {
 		fs.writeFileSync('file' + i, '');
 	}
 
-	await t.notThrowsAsync(trash(paths));
+	await trash(paths);
 
 	for (let i = 0; i < FILE_COUNT; i++) {
 		t.false(fs.existsSync('file' + i));
