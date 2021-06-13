@@ -48,11 +48,11 @@ const trash = async (paths, options) => {
 
 	let trash;
 	if (process.platform === 'darwin') {
-		trash = require('./lib/macos');
+		trash = require('./lib/macos.js');
 	} else if (process.platform === 'win32') {
-		trash = require('./lib/windows');
+		trash = require('./lib/windows.js');
 	} else {
-		trash = require('./lib/linux');
+		trash = require('./lib/linux.js');
 	}
 
 	return trash(paths);
