@@ -17,11 +17,9 @@ $ npm install trash
 ## Usage
 
 ```js
-const trash = require('trash');
+import trash from 'trash';
 
-(async () => {
-	await trash(['*.png', '!rainbow.png']);
-})();
+await trash(['*.png', '!rainbow.png']);
 ```
 
 ## API

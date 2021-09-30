@@ -1,5 +1,6 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
+import process from 'node:process';
 import test from 'ava';
 import tempfile from 'tempfile';
 import trash from './index.js';
@@ -24,7 +25,7 @@ test('files', async t => {
 		'fixture',
 		'fixture2',
 		weirdName,
-		123
+		123,
 	]);
 
 	t.false(fs.existsSync('fixture'));
@@ -40,7 +41,7 @@ test('glob', async t => {
 	t.true(fs.existsSync('fixture.png'));
 
 	await trash([
-		'*.jpg'
+		'*.jpg',
 	]);
 
 	t.false(fs.existsSync('fixture.jpg'));
@@ -95,7 +96,7 @@ test('directories', async t => {
 
 	await trash([
 		'fdir',
-		321
+		321,
 	]);
 
 	t.false(fs.existsSync('fdir'));
@@ -128,7 +129,7 @@ test('symlinks', async t => {
 
 	await trash([
 		'bbb',
-		'ccc'
+		'ccc',
 	]);
 
 	t.truthy(fs.lstatSync('aaa'));

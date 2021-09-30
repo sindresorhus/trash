@@ -1,12 +1,10 @@
-declare namespace trash {
-	interface Options {
-		/**
-		Enable globbing when matching file paths.
+export interface Options {
+	/**
+	Enable globbing when matching file paths.
 
-		@default true
-		*/
-		readonly glob?: boolean;
-	}
+	@default true
+	*/
+	readonly glob?: boolean;
 }
 
 /**
@@ -16,16 +14,12 @@ Move files and folders to the trash.
 
 @example
 ```
-import trash = require('trash');
+import trash from 'trash';
 
-(async () => {
-	await trash(['*.png', '!rainbow.png']);
-})();
+await trash(['*.png', '!rainbow.png']);
 ```
 */
-declare function trash(
+export default function trash(
 	input: string | readonly string[],
-	options?: trash.Options
+	options?: Options
 ): Promise<void>;
-
-export = trash;

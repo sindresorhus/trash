@@ -1,15 +1,15 @@
-'use strict';
-const fs = require('fs');
-const path = require('path');
-const globby = require('globby');
-const isPathInside = require('is-path-inside');
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import process from 'node:process';
+import globby from 'globby';
+import isPathInside from 'is-path-inside';
 
-const trash = async (paths, options) => {
+export default async function trash(paths, options) {
 	paths = (typeof paths === 'string' ? [paths] : paths).map(path => String(path));
 
 	options = {
 		glob: true,
-		...options
+		...options,
 	};
 
 	// TODO: Upgrading to latest `globby` version is blocked by https://github.com/mrmlnc/fast-glob/issues/110
@@ -17,7 +17,7 @@ const trash = async (paths, options) => {
 		paths = await globby(paths, {
 			expandDirectories: false,
 			nodir: false,
-			nonull: true
+			nonull: true,
 		});
 	}
 
@@ -27,8 +27,7 @@ const trash = async (paths, options) => {
 		}
 
 		try {
-			// eslint-disable-next-line node/no-unsupported-features/node-builtins -- It's Node 10.1+
-			await fs.promises.lstat(filePath);
+			await fs.lstat(filePath);
 		} catch (error) {
 			if (error.code === 'ENOENT') {
 				return;
@@ -46,16 +45,17 @@ const trash = async (paths, options) => {
 		return;
 	}
 
-	let trash;
+	let module;
 	if (process.platform === 'darwin') {
-		trash = require('./lib/macos.js');
+		// eslint-disable-next-line node/no-unsupported-features/es-syntax
+		module = await import('./lib/macos.js');
 	} else if (process.platform === 'win32') {
-		trash = require('./lib/windows.js');
+		// eslint-disable-next-line node/no-unsupported-features/es-syntax
+		module = await import('./lib/windows.js');
 	} else {
-		trash = require('./lib/linux.js');
+		// eslint-disable-next-line node/no-unsupported-features/es-syntax
+		module = await import('./lib/linux.js');
 	}
 
-	return trash(paths);
-};
-
-module.exports = trash;
+	return module.default(paths);
+}

@@ -10,8 +10,10 @@
 		"email": "sindresorhus@gmail.com",
 		"url": "https://sindresorhus.com"
 	},
+	"type": "module",
+	"exports": "./index.js",
 	"engines": {
-		"node": ">=10"
+		"node": ">=12"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -40,19 +42,19 @@
 		"xdg"
 	],
 	"dependencies": {
+		"@sindresorhus/chunkify": "^0.2.0",
 		"@stroncium/procfs": "^1.2.1",
 		"globby": "^7.1.1",
-		"is-path-inside": "^3.0.2",
-		"make-dir": "^3.1.0",
-		"move-file": "^2.0.0",
-		"p-map": "^4.0.0",
+		"is-path-inside": "^4.0.0",
+		"move-file": "^3.0.0",
+		"p-map": "^5.1.0",
 		"uuid": "^8.3.2",
 		"xdg-trashdir": "^3.1.0"
 	},
 	"devDependencies": {
-		"ava": "^2.4.0",
-		"tempfile": "^3.0.0",
-		"tsd": "^0.14.0",
-		"xo": "^0.37.1"
+		"ava": "^3.15.0",
+		"tempfile": "^4.0.0",
+		"tsd": "^0.17.0",
+		"xo": "^0.44.0"
 	}
 }
