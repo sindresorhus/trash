@@ -5,7 +5,7 @@ import globby from 'globby';
 import isPathInside from 'is-path-inside';
 
 export default async function trash(paths, options) {
-	paths = (typeof paths === 'string' ? [paths] : paths).map(path => String(path));
+	paths = [paths].flat().map(path => String(path));
 
 	options = {
 		glob: true,

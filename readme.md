@@ -10,8 +10,8 @@ In contrast to [`fs.unlink`](https://nodejs.org/api/fs.html#fs_fs_unlink_path_ca
 
 ## Install
 
-```
-$ npm install trash
+```sh
+npm install trash
 ```
 
 ## Usage
