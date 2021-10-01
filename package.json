@@ -16,7 +16,7 @@
 		"node": ">=12"
 	},
 	"scripts": {
-		"test": "xo && ava --timeout=5m && tsd"
+		"test": "xo && ava --timeout=10m && tsd"
 	},
 	"files": [
 		"index.js",
