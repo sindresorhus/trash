@@ -1,4 +1,4 @@
-import fs from 'node:fs/promises';
+import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import globby from 'globby';
@@ -27,7 +27,7 @@ export default async function trash(paths, options) {
 		}
 
 		try {
-			await fs.lstat(filePath);
+			await fs.promises.lstat(filePath);
 		} catch (error) {
 			if (error.code === 'ENOENT') {
 				return;
