@@ -16,7 +16,7 @@
 		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
 	},
 	"scripts": {
-		"test": "xo && ava --timeout=10m && tsd"
+		"test": "xo && ava --timeout=20m && tsd"
 	},
 	"files": [
 		"index.js",
