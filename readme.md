@@ -1,4 +1,4 @@
-# ![trash](media/logo.svg)
+# ![trash](media/logo.png)
 
 > Move files and folders to the trash
 
