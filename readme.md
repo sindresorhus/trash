@@ -49,7 +49,7 @@ Enable globbing when matching file paths.
 
 To install the [`trash`](https://github.com/sindresorhus/trash-cli) command, run:
 
-```
+```sh
 npm install --global trash-cli
 ```
 
