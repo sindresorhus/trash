@@ -155,14 +155,14 @@ if (process.platform === 'linux') {
 
 		fs.writeFileSync('f3', '');
 
-		const statSrc = fs.statSync('f3');
+		const statSource = fs.statSync('f3');
 		const files = await trash(['f3']);
-		const statDest = fs.statSync(files[0].path);
+		const statDestination = fs.statSync(files[0].path);
 
-		t.is(statSrc.mode, statDest.mode);
-		t.is(statSrc.uid, statDest.uid);
-		t.is(statSrc.gid, statDest.gid);
-		t.is(statSrc.size, statDest.size);
+		t.is(statSource.mode, statDestination.mode);
+		t.is(statSource.uid, statDestination.uid);
+		t.is(statSource.gid, statDestination.gid);
+		t.is(statSource.size, statDestination.size);
 	});
 }
 
@@ -172,17 +172,17 @@ test('non-existent files', async t => {
 });
 
 test('glob with nested directories', async t => {
-	const dir1 = 'foo';
+	const directory1 = 'foo';
 	const file1 = path.join('foo', 'bar.txt');
 	const file2 = path.join('foo', 'baz.txt');
-	const dir2 = path.join('foo', 'bar');
-	const dir3 = path.join('foo', 'baz');
-	const file3 = path.join(dir1, 'foo.txt');
-	const file4 = path.join(dir2, 'bar.txt');
+	const directory2 = path.join('foo', 'bar');
+	const directory3 = path.join('foo', 'baz');
+	const file3 = path.join(directory1, 'foo.txt');
+	const file4 = path.join(directory2, 'bar.txt');
 
-	fs.mkdirSync(dir1);
-	fs.mkdirSync(dir2);
-	fs.mkdirSync(dir3);
+	fs.mkdirSync(directory1);
+	fs.mkdirSync(directory2);
+	fs.mkdirSync(directory3);
 	fs.writeFileSync(file1, '');
 	fs.writeFileSync(file2, '');
 	fs.writeFileSync(file3, '');
@@ -192,9 +192,9 @@ test('glob with nested directories', async t => {
 	t.true(fs.existsSync(file3));
 	t.true(fs.existsSync(file4));
 
-	await trash(`${dir1}/**`, {glob: true});
+	await trash(`${directory1}/**`, {glob: true});
 
-	t.false(fs.existsSync(dir1));
-	t.false(fs.existsSync(dir2));
-	t.false(fs.existsSync(dir3));
+	t.false(fs.existsSync(directory1));
+	t.false(fs.existsSync(directory2));
+	t.false(fs.existsSync(directory3));
 });

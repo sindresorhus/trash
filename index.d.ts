@@ -1,11 +1,11 @@
-export interface Options {
+export type Options = {
 	/**
 	Enable globbing when matching file paths.
 
 	@default true
 	*/
 	readonly glob?: boolean;
-}
+};
 
 /**
 Move files and folders to the trash.

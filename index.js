@@ -5,7 +5,7 @@ import globby from 'globby';
 import isPathInside from 'is-path-inside';
 
 export default async function trash(paths, options) {
-	paths = [paths].flat().map(path => String(path));
+	paths = [paths].flat().map(String);
 
 	options = {
 		glob: true,
@@ -39,7 +39,7 @@ export default async function trash(paths, options) {
 		return path.resolve(filePath);
 	}));
 
-	paths = paths.filter(isPath => isPath);
+	paths = paths.filter(Boolean);
 
 	if (paths.length === 0) {
 		return;
@@ -47,13 +47,10 @@ export default async function trash(paths, options) {
 
 	let module;
 	if (process.platform === 'darwin') {
-		// eslint-disable-next-line node/no-unsupported-features/es-syntax
 		module = await import('./lib/macos.js');
 	} else if (process.platform === 'win32') {
-		// eslint-disable-next-line node/no-unsupported-features/es-syntax
 		module = await import('./lib/windows.js');
 	} else {
-		// eslint-disable-next-line node/no-unsupported-features/es-syntax
 		module = await import('./lib/linux.js');
 	}
 
