@@ -1,58 +1,71 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import globby from 'globby';
+import {globby} from 'globby';
 import isPathInside from 'is-path-inside';
 
-export default async function trash(paths, options) {
+export default async function trash(paths, options = {}) {
 	paths = [paths].flat().map(String);
 
-	options = {
-		glob: true,
-		...options,
-	};
+	const {glob = true} = options;
 
-	// TODO: Upgrading to latest `globby` version is blocked by https://github.com/mrmlnc/fast-glob/issues/110
-	if (options.glob) {
-		paths = await globby(paths, {
-			expandDirectories: false,
-			nodir: false,
-			nonull: true,
+	if (glob) {
+		// Normalize '/**' patterns to their base directory
+		const patterns = paths.map(pattern => {
+			const isNegated = pattern.startsWith('!');
+			const body = isNegated ? pattern.slice(1) : pattern;
+			const normalized = body.endsWith('/**') ? path.dirname(body) : body;
+			return isNegated ? '!' + normalized : normalized;
 		});
+
+		const matches = await globby(patterns, {
+			expandDirectories: false,
+			onlyFiles: false,
+			followSymbolicLinks: false,
+		});
+
+		// Include literal paths that exist
+		const literals = await Promise.all(paths.map(async p => {
+			try {
+				await fs.promises.lstat(p);
+				return p;
+			} catch {
+				return null;
+			}
+		}));
+
+		paths = [...new Set([...matches, ...literals.filter(Boolean)])];
 	}
 
-	paths = await Promise.all(paths.map(async filePath => {
-		if (paths.some(otherPath => isPathInside(filePath, otherPath))) {
+	// Filter out nested paths and resolve
+	const pathChecks = await Promise.all(paths.map(async filePath => {
+		// Skip if nested in another path
+		if (paths.some(p => p !== filePath && isPathInside(filePath, p))) {
 			return;
 		}
 
 		try {
 			await fs.promises.lstat(filePath);
+			return path.resolve(filePath);
 		} catch (error) {
-			if (error.code === 'ENOENT') {
-				return;
+			// Ignore non-existent paths
+			if (error.code !== 'ENOENT') {
+				throw error;
 			}
-
-			throw error;
 		}
-
-		return path.resolve(filePath);
 	}));
 
-	paths = paths.filter(Boolean);
+	const resolvedPaths = pathChecks.filter(Boolean);
 
-	if (paths.length === 0) {
+	if (resolvedPaths.length === 0) {
 		return;
 	}
 
-	let module;
-	if (process.platform === 'darwin') {
-		module = await import('./lib/macos.js');
-	} else if (process.platform === 'win32') {
-		module = await import('./lib/windows.js');
-	} else {
-		module = await import('./lib/linux.js');
-	}
+	// Load platform-specific implementation
+	const platform = process.platform === 'darwin'
+		? 'macos'
+		: (process.platform === 'win32' ? 'windows' : 'linux');
 
-	return module.default(paths);
+	const {default: trashFunction} = await import(`./lib/${platform}.js`);
+	return trashFunction(resolvedPaths);
 }
