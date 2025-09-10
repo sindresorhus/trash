@@ -65,6 +65,10 @@ On Windows, [`recycle-bin`](https://github.com/sindresorhus/recycle-bin) is used
 
 Not really. The `mv` command isn't cross-platform and moving to trash is not just about moving the file to a "trash" directory. On all OSes you'll run into file conflicts. The user won't easily be able to restore the file. It won't work on an external drive. The trash directory location varies between Windows versions. For Linux, there's a whole [spec](https://standards.freedesktop.org/trash-spec/trashspec-1.0.html) you need to follow. On macOS, you'll lose the [Put back](https://mac-fusion.com/trash-tip-how-to-put-files-back-to-their-original-location/) feature.
 
+### Windows service account behavior
+
+When running as the Windows SYSTEM account or other service accounts, files are moved to that account's recycle bin (e.g., `C:\$Recycle.Bin\S-1-5-18\` for SYSTEM). These files won't be visible in the normal user's recycle bin and may accumulate over time. For service contexts, consider using direct file deletion instead.
+
 ## Related
 
 - [trash-cli](https://github.com/sindresorhus/trash-cli) - CLI for this module
