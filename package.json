@@ -50,6 +50,7 @@
 		"@stroncium/procfs": "^1.2.1",
 		"globby": "^14.1.0",
 		"is-path-inside": "^4.0.0",
+		"is-wsl": "^3.1.0",
 		"move-file": "^3.1.0",
 		"p-map": "^7.0.3",
 		"xdg-trashdir": "^3.1.0"
