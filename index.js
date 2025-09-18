@@ -61,11 +61,23 @@ export default async function trash(paths, options = {}) {
 		return;
 	}
 
-	// Load platform-specific implementation
-	const platform = process.platform === 'darwin'
-		? 'macos'
-		: (process.platform === 'win32' ? 'windows' : 'linux');
-
-	const {default: trashFunction} = await import(`./lib/${platform}.js`);
+	const {default: trashFunction} = await platformSpecificImplementation();
 	return trashFunction(resolvedPaths);
+}
+
+// We use static imports so it can be statically analyzed.
+async function platformSpecificImplementation() {
+	switch (process.platform) {
+		case 'darwin': {
+			return import('./lib/macos.js');
+		}
+
+		case 'win32': {
+			return import('./lib/windows.js');
+		}
+
+		default: {
+			return import('./lib/linux.js');
+		}
+	}
 }
