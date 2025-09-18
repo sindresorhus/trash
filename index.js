@@ -65,6 +65,7 @@ export default async function trash(paths, options = {}) {
 	return trashFunction(resolvedPaths);
 }
 
+// We use static imports so it can be statically analyzed.
 async function platformSpecificImplementation() {
 	switch (process.platform) {
 		case 'darwin': {
