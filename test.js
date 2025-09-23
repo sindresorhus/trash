@@ -195,3 +195,39 @@ test('glob with nested directories', async () => {
 	assert.ok(!fs.existsSync(directory2));
 	assert.ok(!fs.existsSync(directory3));
 });
+
+test('empty array', async () => {
+	await assert.doesNotReject(trash([]));
+});
+
+test('mixed existing and non-existing files', async () => {
+	fs.writeFileSync('exists1', '');
+	fs.writeFileSync('exists2', '');
+	assert.ok(fs.existsSync('exists1'));
+	assert.ok(fs.existsSync('exists2'));
+	assert.ok(!fs.existsSync('does-not-exist'));
+
+	await trash(['exists1', 'does-not-exist', 'exists2']);
+
+	assert.ok(!fs.existsSync('exists1'));
+	assert.ok(!fs.existsSync('exists2'));
+	assert.ok(!fs.existsSync('does-not-exist'));
+});
+
+test('single file path', async () => {
+	fs.writeFileSync('single-file', '');
+	assert.ok(fs.existsSync('single-file'));
+
+	await trash('single-file');
+
+	assert.ok(!fs.existsSync('single-file'));
+});
+
+test('empty directory', async () => {
+	fs.mkdirSync('empty-dir');
+	assert.ok(fs.existsSync('empty-dir'));
+
+	await trash('empty-dir');
+
+	assert.ok(!fs.existsSync('empty-dir'));
+});
