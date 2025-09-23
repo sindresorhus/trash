@@ -76,6 +76,15 @@ async function platformSpecificImplementation() {
 			return import('./lib/windows.js');
 		}
 
+		case 'linux': {
+			const {default: isWsl} = await import('is-wsl');
+			if (isWsl) {
+				return import('./lib/wsl.js');
+			}
+
+			return import('./lib/linux.js');
+		}
+
 		default: {
 			return import('./lib/linux.js');
 		}
