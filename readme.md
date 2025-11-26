@@ -56,7 +56,7 @@ npm install --global trash-cli
 ## Info
 
 On macOS, [`macos-trash`](https://github.com/sindresorhus/macos-trash) is used.\
-On Linux, the [XDG spec](https://standards.freedesktop.org/trash-spec/trashspec-1.0.html) is followed.\
+On Linux, the [XDG spec](https://specifications.freedesktop.org/trash/1.0/) is followed.\
 On Windows, [`recycle-bin`](https://github.com/sindresorhus/recycle-bin) is used.
 
 ## FAQ
