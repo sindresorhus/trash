@@ -46,8 +46,8 @@
 		"xdg"
 	],
 	"dependencies": {
-		"@sindresorhus/chunkify": "^2.0.0",
 		"@stroncium/procfs": "^1.2.1",
+		"chunkify": "^2.0.0",
 		"globby": "^14.1.0",
 		"is-path-inside": "^4.0.0",
 		"move-file": "^3.1.0",
