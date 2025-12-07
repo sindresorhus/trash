@@ -11,7 +11,6 @@ jobs:
       matrix:
         node-version:
           - 24
-          - 22
           - 20
         os:
           - ubuntu-latest
@@ -19,7 +18,7 @@ jobs:
           # - windows-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
