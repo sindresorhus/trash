@@ -140,10 +140,10 @@ test('symlinks', async () => {
 
 if (process.platform === 'linux') {
 	test('create trashinfo', async () => {
-		fs.writeFileSync('f2', '');
+		fs.writeFileSync('f2 ^', '');
 
-		const info = `[Trash Info]\nPath=${path.resolve('f2')}`;
-		const files = await trash(['f2']);
+		const info = `[Trash Info]\nPath=${path.resolve(encodeURI('f2 ^'))}`;
+		const files = await trash(['f2 ^']);
 		const infoFile = fs.readFileSync(files[0].info, 'utf8');
 
 		assert.equal(infoFile.trim().indexOf(info.trim()), 0);
