@@ -77,7 +77,7 @@ async function platformSpecificImplementation() {
 		}
 
 		case 'linux': {
-			const {default: isWsl} = await import('is-wsl');
+			const {isWsl} = await import('wsl-utils');
 			if (isWsl) {
 				return import('./lib/wsl.js');
 			}
