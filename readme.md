@@ -34,6 +34,8 @@ Type: `string | string[]`
 
 Accepts paths and [glob patterns](https://github.com/sindresorhus/globby#globbing-patterns).
 
+Non-existent files and glob patterns that match nothing are silently ignored. If you need to know whether files were actually trashed, check for their existence beforehand.
+
 #### options
 
 Type: `object`
