@@ -259,3 +259,20 @@ test('unicode characters in filename', async () => {
 
 	assert.ok(!fs.existsSync(name));
 });
+
+test('invalid surrogate pair in filename', async () => {
+	const name = 'test\uDE00\uD83D.txt';
+	fs.writeFileSync(name, '');
+	assert.ok(fs.existsSync(name));
+
+	if (process.platform === 'linux') {
+		await assert.rejects(trash(name), {
+			name: 'TypeError',
+			message: /Cannot trash file with invalid encoding in filename/,
+		});
+		fs.unlinkSync(name);
+	} else {
+		await trash(name);
+		assert.ok(!fs.existsSync(name));
+	}
+});
