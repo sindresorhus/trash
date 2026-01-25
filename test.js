@@ -249,3 +249,13 @@ test('empty directory', async () => {
 
 	assert.ok(!fs.existsSync('empty-dir'));
 });
+
+test('unicode characters in filename', async () => {
+	const name = '㊕ 八倍縮時影片⏩ 📺 🚲 test.txt';
+	fs.writeFileSync(name, '');
+	assert.ok(fs.existsSync(name));
+
+	await trash(name);
+
+	assert.ok(!fs.existsSync(name));
+});
