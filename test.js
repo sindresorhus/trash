@@ -49,6 +49,24 @@ test('glob', async () => {
 	assert.ok(fs.existsSync('fixture.png'));
 });
 
+test('glob with exclusion', async () => {
+	fs.writeFileSync('file1.txt', '');
+	fs.writeFileSync('file2.txt', '');
+	fs.writeFileSync('keep.txt', '');
+	assert.ok(fs.existsSync('file1.txt'));
+	assert.ok(fs.existsSync('file2.txt'));
+	assert.ok(fs.existsSync('keep.txt'));
+
+	await trash([
+		'*.txt',
+		'!keep.txt',
+	]);
+
+	assert.ok(!fs.existsSync('file1.txt'));
+	assert.ok(!fs.existsSync('file2.txt'));
+	assert.ok(fs.existsSync('keep.txt'));
+});
+
 test('no glob', async () => {
 	if (process.platform !== 'win32') {
 		fs.writeFileSync('fixture-noglob*.js', '');
